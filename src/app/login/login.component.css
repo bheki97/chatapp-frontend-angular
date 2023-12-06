@@ -1,0 +1,86 @@
+@media (max-width: 767px) {
+    .h-md-25 {
+        height: 25%;
+    }
+
+    .h-md-0 {
+        height: 0%;
+    }
+
+    .h-md-100 {
+        height: 100%;
+    }
+
+    .h-md-75 {
+        height: 75%;
+    }
+
+    h1 {
+        font-size: 50px !important;
+    }
+
+
+    .img-md-container {
+        background-image: url('OBJECTS.png');
+        /* Replace with the path to your image */
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+        min-height: fit-content;
+        width: 100%;
+    }
+
+
+
+
+}
+
+h1 {
+    font-size: 70px;
+}
+
+
+.img-container {
+    background-image: url('OBJECTS.png');
+    /* Replace with the path to your image */
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    min-height: fit-content;
+    max-height: 100%;
+    border-right: 1px solid #F6F6F6;
+    border-radius: 5px;
+}
+
+input:focus {
+    border: 2px solid #365BD2;
+}
+
+@media (min-width:933px) {
+    input {
+        padding-left: 40px !important;
+        min-height: 40px !important;
+    }
+}
+
+.new-account-btn {
+    color: #365BD2;
+    border: 1px solid #365BD2;
+    padding-left: 20px;
+    padding-right: 20px;
+    font-family: 'Kanit';
+}
+
+input {
+    border: 0px;
+    background-color: #EEEEEE;
+}
+
+
+.login-link {
+    font-size: medium;
+    text-align: center;
+    color: #FF0000;
+    font-family: 'Kanit Thin';
+    margin-bottom: 20px;
+}

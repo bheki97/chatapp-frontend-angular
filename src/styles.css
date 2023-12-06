@@ -1,1 +1,39 @@
 /* You can add global styles to this file, and also import other style files */
+/* You can add global styles to this file, and also import other style files */
+@font-face {
+  font-family: 'kanit';
+  src: url('./assets/fonts/Kanit/Kanit-Bold.ttf') format('ttf');
+  font-weight: bold;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Kanit Thin';
+  src: local('Kanit Thin');
+  font-weight: 100; /* Ensure it matches the desired font weight */
+  font-style: normal; /* Adjust if it's italic or other styles */
+}
+
+input::placeholder{
+  font-family: 'Kanit Thin';
+  font-size: larger;
+  color: #8B8B8B;
+}
+input{
+  padding-left: 20px !important;
+}
+
+.register-btn{
+  font-family: Kanit;
+  color: #FFFFFF;
+  font-size: larger;
+}
+
+h1{
+  color: #365BD2;
+  font-family: Kanit;
+  text-align: center;
+
+}
+
+html{ height: 100%; }
+body { margin: 0;min-height: 100%;height: 700px; font-family: Roboto, "Helvetica Neue", sans-serif; }

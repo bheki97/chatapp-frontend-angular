@@ -1,0 +1,49 @@
+.background-image {
+    background-image: url('Sign up-pana 2.png'); 
+    /* Replace with the path to your image */
+    background-size: contain; 
+    background-repeat: no-repeat;
+    background-position: center bottom;
+    width: 100%; 
+    min-height: fit-content; 
+    max-height: 100%;
+  }
+
+
+ 
+  .login-link{
+    font-size: larger;
+    text-align: center;
+    color: #FF0000;
+    font-family: 'Kanit Thin';
+    margin-bottom: 20px;
+  }
+
+
+  input{
+    background-color: #EEEEEE;
+    border-color: #365BD2;
+  }
+
+  input:focus {
+    border: 2px solid #365BD2;
+  }
+
+.input-field-box{
+  margin-block: 5px;
+}
+
+
+@media (max-width: 576px) {
+  .truncate-text {
+      font-size: 15.5px;
+      text-align: center;
+  }
+}
+
+/* Adjust font size for larger screens */
+@media (min-width: 576px) {
+  .truncate-text {
+      font-size: 25px; /* Change the font size as needed */
+  }
+}
