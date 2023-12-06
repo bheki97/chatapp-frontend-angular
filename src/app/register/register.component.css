@@ -1,22 +1,23 @@
 .background-image {
-    background-image: url('Sign up-pana 2.png'); 
+    background-image: url('Sign up-pana 2.png');
     /* Replace with the path to your image */
-    background-size: contain; 
+    background-size: contain;
     background-repeat: no-repeat;
     background-position: center bottom;
-    width: 100%; 
-    min-height: fit-content; 
+    width: 100%;
+    min-height: fit-content;
     max-height: 100%;
   }
 
 
- 
+
   .login-link{
     font-size: larger;
     text-align: center;
     color: #FF0000;
     font-family: 'Kanit Thin';
     margin-bottom: 20px;
+    text-decoration: none;
   }
 
 

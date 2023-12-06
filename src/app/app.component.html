@@ -1,8 +1,9 @@
 <div class="main-div d-flex justify-content-center align-items-center ">
   <div class="container shadow  app-container  col-12 rounded " style=" background-color: white;">
-      <app-login *ngIf="active"></app-login>
-      <app-register *ngIf="!active"></app-register>
 
+    <router-outlet></router-outlet>
 
+<!--      <app-login *ngIf="active"></app-login>-->
+<!--      <app-register *ngIf="!active"></app-register>-->
   </div>
 </div>

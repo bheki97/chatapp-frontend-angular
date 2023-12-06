@@ -5,7 +5,15 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {RouterModule, Routes} from "@angular/router";
 
+
+
+const appRouters:Routes = [
+  {path:'',component:LoginComponent},
+  {path:'login',component:LoginComponent},
+  {path:'registration',component:RegisterComponent}
+]
 @NgModule({
   declarations: [
     AppComponent,
@@ -14,7 +22,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
   ],
   imports: [
     BrowserModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    RouterModule.forRoot(appRouters)
 
   ],
   providers: [],

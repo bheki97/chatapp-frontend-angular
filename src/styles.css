@@ -14,7 +14,7 @@
 }
 
 input::placeholder{
-  font-family: 'Kanit Thin';
+  font-family: 'Kanit Thin', Monaco, "Lucida Console", monospace;
   font-size: larger;
   color: #8B8B8B;
 }
@@ -23,16 +23,20 @@ input{
 }
 
 .register-btn{
-  font-family: Kanit;
+  font-family: Kanit, monospace;
   color: #FFFFFF;
   font-size: larger;
 }
 
 h1{
   color: #365BD2;
-  font-family: Kanit;
+  font-family: Kanit, sans-serif;
   text-align: center;
 
+}
+
+.btn-txt:hover{
+  color: #FF3200;
 }
 
 html{ height: 100%; }
