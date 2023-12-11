@@ -63,13 +63,6 @@ input:focus {
     }
 }
 
-.new-account-btn {
-    color: #365BD2;
-    border: 1px solid #365BD2;
-    padding-left: 20px;
-    padding-right: 20px;
-    font-family: 'Kanit';
-}
 
 input {
     border: 0px;
