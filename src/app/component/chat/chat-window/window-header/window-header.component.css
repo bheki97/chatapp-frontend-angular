@@ -2,9 +2,13 @@
   height: 100%;
   width: 100%;
 }
-.wrapper>.row{
-  height: 100%;
-  width: 100%;
+.vert-cent-flex{
+  flex-direction: row;
+  align-items: center;
+}
+h5,p{
+  margin: 0;
+  padding: 0;
 }
 
 .center-flex{
