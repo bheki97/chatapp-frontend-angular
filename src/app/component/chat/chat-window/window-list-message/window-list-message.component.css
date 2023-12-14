@@ -1,0 +1,24 @@
+.wrapper{
+  height: 100%;
+  width: 100%;
+
+}
+.sent-flex{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: end;
+}
+.received-flex{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+}
+
+.img-responsive{
+  width:60%;
+  margin-bottom: 5px;
+}
