@@ -22,7 +22,6 @@
 
 .wrapper > .msg-list {
   flex-grow: 1;
-  margin-bottom: 10px;
   overflow: scroll;
   overflow-x:hidden ;
 }
