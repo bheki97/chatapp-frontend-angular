@@ -1,0 +1,28 @@
+.wrapper{
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background-color: #EEEEEE;
+}
+
+.text-field-wrapper{
+
+  flex-grow: 1;
+}
+input[type="text"]{
+  margin: auto;
+  width: 95%;
+  background-color: #FFFFFF;
+  border: none;
+}
+
+input[type="text"]:focus{
+  outline: none;
+  box-shadow: none;
+}
+
+.send-btn-wrapper{
+  width: 90px;
+}
