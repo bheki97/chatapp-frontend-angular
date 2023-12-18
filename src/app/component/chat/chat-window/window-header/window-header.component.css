@@ -1,15 +1,45 @@
 .wrapper{
   height: 100%;
   width: 100%;
-}
-.vert-cent-flex{
+  display: flex;
   flex-direction: row;
+
+}
+
+.profile-icon{
+  width: 80px;
+}
+.user-name{
+  flex-grow: 1;
+  width: 100%;
+  padding-top:10px ;
+  min-height: fit-content;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+
+
+
+.vert-cent-flex{
+  height: 100%;
+  width: 100%;
+  flex-direction: column;
   align-items: center;
 }
 h5,p{
   margin: 0;
   padding: 0;
 }
+
+/*.wrapper>.row{*/
+/*  height: 100%;*/
+/*}*/
+
+/*.col-2,.col-12{*/
+/*  padding: 0!important;*/
+/*}*/
 
 .center-flex{
   width: 100%;
