@@ -4,7 +4,8 @@
 
     <div class="sent-flex" *ngIf="a.senderId!==username" >
       <div class="msg sender" >
-        {{a.message}}
+        <p>{{a.message}}</p>
+        <div class="time" ><p>{{formatTime(a.sendDate)}}</p></div>
       </div>
 
       <!--      <img src="assets/sent-msg-panel.png" alt="" class="img-responsive">-->
@@ -14,7 +15,8 @@
     <div class="received-flex"  *ngIf="a.senderId===username" >
 
       <div class="msg receiver" >
-        {{a.message}}
+        <p>{{a.message}}</p>
+        <div class="time"><p>{{formatTime(a.sendDate)}}</p></div>
       </div>
 
 

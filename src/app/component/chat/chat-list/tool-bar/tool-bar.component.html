@@ -5,24 +5,38 @@
     </div>
     <div class="col-6">
       <div class="top-left mx-3 my-2">
-        <a href="#"><img alt="more" src="./assets/more_vert.png"></a>
-
-        <a href="#" class="link">
-          <div
-            class="profile-icon" style="
-                background-image: url('./assets/profile-icon-125.png');
-                background-repeat: no-repeat;
-                background-size: cover">
-            <span>B</span>
+<!--        <button class="link  dropdown-toggle" type="button" id="profileMenu" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
+<!--          <div class="profile-icon " style="background-image: url('./assets/profile-icon-125.png');">-->
+<!--            <span>B</span>-->
+<!--          </div>-->
+<!--        </button>-->
+<!--        <ul class="dropdown-menu" aria-labelledby="profileMenu">-->
+<!--          <li class="dropdown-item">view profile</li>-->
+<!--          <li class="dropdown-item">logout</li>-->
+<!--        </ul>-->
+        <div class="dropdown" (click)="toggleDropdown()">
+<!--          <button class="dropbtn">Select an option</button>-->
+          <button class="link  dropbtn" >
+            <div class="profile-icon " style="background-image: url('./assets/profile-icon-125.png');">
+              <span>B</span>
+            </div>
+          </button>
+          <div class="dropdown-content" *ngIf="isDropdownOpen">
+            <a href="#">View Profile</a>
+            <a href="#">Logout</a>
           </div>
-        </a>
-      </div>
+        </div>
 
     </div>
   </div>
   <div class="row">
     <div class="col-12 search-bar">
-      <input class="rounded" type="text">
+      <button class=" shadow-sm" (click)="hello()">
+        <div class="search-input">
+          <p>search geeks</p>
+          <img src="assets/search-icon.svg" alt="">
+        </div>
+      </button>
     </div>
   </div>
 </div>

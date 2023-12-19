@@ -1,5 +1,6 @@
 import {Component} from '@angular/core';
 import {ChatMsgModel} from "../../../../model/chat-msg.model";
+import { format } from 'date-fns';
 
 @Component({
   selector: 'app-window-list-message',
@@ -52,7 +53,14 @@ export class WindowListMessageComponent {
       sendDate:new Date(),
       senderId:'siya',
       msgId:1113}),
+    new ChatMsgModel({message:'O',
+      sendDate:new Date(),
+      senderId:'bheki',
+      msgId:1112}),
   ];
 
+   formatTime(date: Date): string {
+    return format(date,'h:mm a')
+  }
 
 }

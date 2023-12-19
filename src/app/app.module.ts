@@ -19,6 +19,7 @@ import { ToolBarComponent } from './component/chat/chat-list/tool-bar/tool-bar.c
 import { WindowHeaderComponent } from './component/chat/chat-window/window-header/window-header.component';
 import { WindowBaseComponent } from './component/chat/chat-window/window-base/window-base.component';
 import { WindowListMessageComponent } from './component/chat/chat-window/window-list-message/window-list-message.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 
@@ -44,7 +45,8 @@ import { WindowListMessageComponent } from './component/chat/chat-window/window-
     BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgbModule
 
   ],
   providers: [HttpClient],
