@@ -14,6 +14,10 @@ export class ToolBarComponent {
 
   hello() {
     console.log('Hello World')
+  }hello1() {
+    console.log('Hello World1')
+  }hello2() {
+    console.log('Hello World2')
   }
 
   @HostListener('document:click', ['$event'])
