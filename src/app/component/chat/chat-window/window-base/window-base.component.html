@@ -2,10 +2,12 @@
 <!--  text-area-->
 
   <div class="text-field-wrapper">
-    <input  type="text" class="form-control">
+<!--    <input  type="text" class="form-control" placeholder="type message here">-->
+
+    <textarea id="multilineInput" placeholder="type message here" name="multilineInput" class="form-control" rows="1" cols="50" (input)="autoResize($event)"></textarea>
   </div>
 <!--  send-button-->
   <div class="send-btn-wrapper">
-    <button class="btn btn-primary">send</button>
+    <button class="btn">send</button>
   </div>
 </div>

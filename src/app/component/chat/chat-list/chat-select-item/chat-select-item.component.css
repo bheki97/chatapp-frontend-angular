@@ -1,5 +1,6 @@
 a{
   text-decoration: none;
+  color: black;
 }
 .img-responsive{
   height: 50px;
@@ -33,5 +34,5 @@ h3{
   padding: 0!important;
 }
 a:hover {
-  background-color: #EAEFFF;
+  background-color: #EAEFFF !important;
 }

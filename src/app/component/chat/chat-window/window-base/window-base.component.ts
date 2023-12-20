@@ -7,4 +7,10 @@ import { Component } from '@angular/core';
 })
 export class WindowBaseComponent {
 
+
+  autoResize(event: any): void {
+    const textarea = event.target;
+    textarea.style.height = 'auto';
+    textarea.style.height = (textarea.scrollHeight) + 'px';
+  }
 }

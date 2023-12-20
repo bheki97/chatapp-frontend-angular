@@ -1,6 +1,7 @@
 .wrapper{
-  height: 100%;
+  min-height: 100%;
   width: 100%;
+  max-height: fit-content;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -8,19 +9,35 @@
 }
 
 .text-field-wrapper{
-
+  margin-top: 15px;
+  margin-bottom: 20px;
   flex-grow: 1;
 }
-input[type="text"]{
+textarea{
+  resize: none;
   margin: auto;
-  width: 95%;
+  width: 80%;
   background-color: #FFFFFF;
   border: none;
+  max-height: 100px !important;
+
 }
 
-input[type="text"]:focus{
+textarea::placeholder{
+  font-style: italic;
+  color: #8B8B8B;
+  font-family: 'Kanit Thin', Monaco, "Lucida Console", monospace;
+  margin-left: 20px !important;
+}
+
+textarea:focus{
   outline: none;
   box-shadow: none;
+}
+
+.btn{
+  background-color: #467CFB;
+  color: white;
 }
 
 .send-btn-wrapper{

@@ -6,8 +6,8 @@
 }
 
 .msg-sender{
-  height: 70px;
-  min-height: 70px;
+  height: fit-content;
+  max-height: 140px;
   background-color: #FAFAFA;
   box-shadow: 0px -1px 1px rgba(0, 0, 0, 0.1);
 }
