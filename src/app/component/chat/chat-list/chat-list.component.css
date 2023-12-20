@@ -12,11 +12,16 @@
 
 }
 
+.list-group{
+  width: 100%;
+  max-width: 100%;
+}
 
 
 
 .tool-bar {
   width: 100%;
+  max-width: fit-content;
   height: 200px;
   border-top-left-radius: 10px;
   background-color: #FAFAFA;
@@ -24,4 +29,5 @@
 
 .chat-list{
   flex-grow: 1;
+  width: 100%;
 }
