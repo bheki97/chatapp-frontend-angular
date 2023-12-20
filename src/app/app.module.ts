@@ -20,6 +20,7 @@ import { WindowHeaderComponent } from './component/chat/chat-window/window-heade
 import { WindowBaseComponent } from './component/chat/chat-window/window-base/window-base.component';
 import { WindowListMessageComponent } from './component/chat/chat-window/window-list-message/window-list-message.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import {GeekRoomService} from "./service/room-service/geek-room.service";
 
 
 
@@ -49,7 +50,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     NgbModule
 
   ],
-  providers: [HttpClient],
+  providers: [HttpClient,GeekRoomService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

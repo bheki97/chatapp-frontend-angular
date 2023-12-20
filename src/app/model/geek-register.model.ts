@@ -1,26 +1,14 @@
 
 
-export class GeekModel {
 
-  private _firstname:string = ''
-  private _lastname:string = ''
-  private _username:string = ''
-  private _email:string = ''
-  private _cellNumber:string = ''
-  private _registrationDate:Date = new Date()
-  constructor(_firstname?:string,
-              _lastname?:string,
-              _username?:string,
-              _email?:string,
-              _cellNumber?:string,
-              _registrationDate?:Date) {
-    this._firstname = _firstname||'';
-    this._lastname = _firstname  ||'';
-    this._username = _username ||'';
-    this._email = _email||'';
-    this._cellNumber = _cellNumber||''
-    this._registrationDate = _registrationDate||new Date()
-
+export class GeekRegisterModel {
+  constructor(private _firstname:string,
+              private _lastname:string,
+              private _username:string,
+              private _email:string,
+              private _cellNumber:string,
+              private _password:string,
+              private _registrationDate?:Date) {
   }
 
 
@@ -64,6 +52,13 @@ export class GeekModel {
     this._cellNumber = value;
   }
 
+  get password(): string {
+    return this._password;
+  }
+
+  set password(value: string) {
+    this._password = value;
+  }
 
   get registrationDate(): any {
     return this._registrationDate?this.registrationDate:-1;
@@ -72,5 +67,4 @@ export class GeekModel {
   set registrationDate(value: Date) {
     this._registrationDate = value;
   }
-
 }

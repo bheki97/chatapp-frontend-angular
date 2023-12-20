@@ -1,5 +1,5 @@
 import {HttpClient} from "@angular/common/http";
-import {GeekModel} from "../../model/geek.model";
+import {GeekRegisterModel} from "../../model/geek-register.model";
 import {Injectable} from "@angular/core";
 
 
@@ -9,7 +9,7 @@ export class RegisterGeekHttpService{
 
   constructor(private httpClient:HttpClient) {
   }
-  verifyGeek(geekInfo:GeekModel){
+  verifyGeek(geekInfo:GeekRegisterModel){
     this.httpClient.post("http://localhost:8080/api/geek/verify",geekInfo)
   }
 

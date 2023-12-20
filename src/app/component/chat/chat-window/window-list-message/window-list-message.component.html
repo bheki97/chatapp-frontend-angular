@@ -2,7 +2,7 @@
 
   <div *ngFor="let a of messages">
 
-    <div class="sent-flex" *ngIf="a.senderId!==username" >
+    <div class="sent-flex" *ngIf="a.senderId!==activeChatGeek" >
       <div class="msg sender" >
         <p>{{a.message}}</p>
         <div class="time" ><p>{{formatTime(a.sendDate)}}</p></div>
@@ -12,7 +12,7 @@
     </div>
 
 
-    <div class="received-flex"  *ngIf="a.senderId===username" >
+    <div class="received-flex"  *ngIf="a.senderId===activeChatGeek" >
 
       <div class="msg receiver" >
         <p>{{a.message}}</p>

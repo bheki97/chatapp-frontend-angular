@@ -1,66 +1,45 @@
-import {Component} from '@angular/core';
-import {ChatMsgModel} from "../../../../model/chat-msg.model";
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import { format } from 'date-fns';
+import {MsgModel} from "../../../../model/msg.model";
+import {GeekRoomService} from "../../../../service/room-service/geek-room.service";
+import {GeekRoomModel} from "../../../../model/room/geek-room.model";
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-window-list-message',
   templateUrl: './window-list-message.component.html',
   styleUrls: ['./window-list-message.component.css']
 })
-export class WindowListMessageComponent {
+export class WindowListMessageComponent implements OnInit,OnDestroy{
 
-   roomId?:number;
-   receiverId:string = 'bheki';
-   username?:string = 'siya';
+    messages:MsgModel[] = []
+    activeChatGeek = ''
+    activeChatSubscription? :Subscription
 
-  messages:ChatMsgModel[] = [
-    new ChatMsgModel({
-      message:'Hey, Bheki. Are you Good,Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab aspernatur consectetur, consequatur, doloribus est ex expedita illum labore magni molestiae necessitatibus porro quaerat qui tempore unde? Aliquid architecto et rem.',
-      senderId:'bheki',
-      sendDate:new Date(),
-      msgId:1111}),
-    new ChatMsgModel({message:'Ola, Ke Xap wena?',
-      sendDate:new Date(),
-      senderId:'bheki',
-      msgId:1112}),
-    new ChatMsgModel({message:'Hey, Great',
-      sendDate:new Date(),
-      senderId:'siya',
-      msgId:1113}),
-    new ChatMsgModel({
-      message:'Hey, Bheki. Are you Good,Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab aspernatur consectetur, consequatur, doloribus est ex expedita illum labore magni molestiae necessitatibus porro quaerat qui tempore unde? Aliquid architecto et rem.',
-      senderId:'bheki',
-      sendDate:new Date(),
-      msgId:1111}),
-    new ChatMsgModel({message:'Ola, Ke Xap wena?',
-      sendDate:new Date(),
-      senderId:'bheki',
-      msgId:1112}),
-    new ChatMsgModel({message:'Hey, Bheki. Are you Good,Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab aspernatur consectetur, consequatur, doloribus est ex expedita illum labore magni molestiae necessitatibus porro quaerat qui tempore unde? Aliquid architecto et rem.',
-      sendDate:new Date(),
-      senderId:'siya',
-      msgId:1113}),
-    new ChatMsgModel({
-      message:'Hey, Bheki. Are you Good,Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab aspernatur consectetur, consequatur, doloribus est ex expedita illum labore magni molestiae necessitatibus porro quaerat qui tempore unde? Aliquid architecto et rem.',
-      senderId:'bheki',
-      sendDate:new Date(),
-      msgId:1111}),
-    new ChatMsgModel({message:'Ola, Ke Xap wena?',
-      sendDate:new Date(),
-      senderId:'bheki',
-      msgId:1112}),
-    new ChatMsgModel({message:'Hey, Great',
-      sendDate:new Date(),
-      senderId:'siya',
-      msgId:1113}),
-    new ChatMsgModel({message:'O',
-      sendDate:new Date(),
-      senderId:'bheki',
-      msgId:1112}),
-  ];
+  constructor(private roomService:GeekRoomService) {
+    const room = roomService.geekRooms.at(roomService.activeRoomId) as GeekRoomModel;
+    this.activeChatGeek = room.receiver.username;
+    this.messages = room.messages
+
+
+  }
 
    formatTime(date: Date): string {
     return format(date,'h:mm a')
+  }
+
+  ngOnDestroy(): void {
+      this.activeChatSubscription = this.roomService.activeRoomChanger.subscribe(() =>{
+        const room = this.roomService.geekRooms.at(this.roomService.activeRoomId) as GeekRoomModel;
+        this.activeChatGeek = room.receiver.username;
+        this.messages = room.messages
+      })
+  }
+
+  ngOnInit(): void {
+      if(this.activeChatSubscription){
+        this.activeChatSubscription.unsubscribe()
+      }
   }
 
 }
