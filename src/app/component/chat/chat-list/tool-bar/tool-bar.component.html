@@ -12,8 +12,8 @@
             </div>
           </button>
           <div class="dropdown-content" *ngIf="isDropdownOpen">
-            <button (click)="hello1()" >View Profile</button>
-            <button (click)="hello2()">Logout</button>
+            <button (click)="popUpViewProfile()" >View Profile</button>
+            <button (click)="popUpLogout()">Logout</button>
           </div>
         </div>
 
@@ -21,7 +21,7 @@
   </div>
   <div class="row">
     <div class="col-12 search-bar">
-      <button class=" shadow-sm" (click)="hello()">
+      <button class=" shadow-sm" (click)="popUpSearchGeek()">
         <div class="search-input">
           <p>search geeks</p>
           <img src="assets/search-icon.svg" alt="">

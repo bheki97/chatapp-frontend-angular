@@ -1,4 +1,5 @@
 import {Component, ElementRef, HostListener} from '@angular/core';
+import {ModalEventService} from "../../../../service/modal-service/modal-event.service";
 
 @Component({
   selector: 'app-tool-bar',
@@ -12,13 +13,19 @@ export class ToolBarComponent {
     this.isDropdownOpen = !this.isDropdownOpen;
   }
 
-  hello() {
-    console.log('Hello World')
-  }hello1() {
-    console.log('Hello World1')
-  }hello2() {
-    console.log('Hello World2')
+  popUpViewProfile() {
+    this.modalService.firePopUp.next(1)
   }
+
+  popUpLogout() {
+    this.modalService.firePopUp.next(2)
+  }
+
+  popUpSearchGeek() {
+    this.modalService.firePopUp.next(3)
+  }
+
+
 
   @HostListener('document:click', ['$event'])
   handleDocumentClick(event: MouseEvent) {
@@ -32,5 +39,8 @@ export class ToolBarComponent {
     this.isDropdownOpen = false;
   }
 
-  constructor(private elementRef: ElementRef) {}
+  constructor(private elementRef: ElementRef,private modalService:ModalEventService) {
+
+
+  }
 }
