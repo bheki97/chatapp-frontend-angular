@@ -17,7 +17,7 @@ export class WindowListMessageComponent implements OnInit,OnDestroy{
     activeChatSubscription? :Subscription
 
   constructor(private roomService:GeekRoomService) {
-    const room = roomService.geekRooms.at(roomService.activeRoomId) as GeekRoomModel;
+    const room = roomService.geekRooms.at(roomService.activeRoomIndex) as GeekRoomModel;
     this.activeChatGeek = room.receiver.username;
     this.messages = room.messages
 
@@ -29,17 +29,19 @@ export class WindowListMessageComponent implements OnInit,OnDestroy{
   }
 
   ngOnDestroy(): void {
-      this.activeChatSubscription = this.roomService.activeRoomChanger.subscribe(() =>{
-        const room = this.roomService.geekRooms.at(this.roomService.activeRoomId) as GeekRoomModel;
-        this.activeChatGeek = room.receiver.username;
-        this.messages = room.messages
-      })
+    if(this.activeChatSubscription){
+      this.activeChatSubscription.unsubscribe()
+    }
   }
 
   ngOnInit(): void {
-      if(this.activeChatSubscription){
-        this.activeChatSubscription.unsubscribe()
-      }
+
+    this.activeChatSubscription = this.roomService.activeRoomChanger.subscribe(() =>{
+      const room = this.roomService.geekRooms.at(this.roomService.activeRoomIndex) as GeekRoomModel;
+      this.activeChatGeek = room.receiver.username;
+      this.messages = room.messages
+    })
+
   }
 
 }

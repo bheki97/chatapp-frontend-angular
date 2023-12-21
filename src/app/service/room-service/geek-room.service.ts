@@ -4,6 +4,7 @@ import {Injectable} from "@angular/core";
 import {ChatMsgModel} from "../../model/chat-msg.model";
 import {GeekModel} from "../../model/geek.model";
 import {MsgModel} from "../../model/msg.model";
+import {ProfileColors} from "../../../assets/colors/profile-colors";
 
 
 @Injectable({
@@ -11,13 +12,14 @@ import {MsgModel} from "../../model/msg.model";
 })export class GeekRoomService{
 
   private _geekRooms?:GeekRoomModel[]
-  private _activeRoomId?:number
+  private _activeRoomIndex?:number
   private _activeRoomChanger?:Subject<void>
 
 
   constructor() {
       this._geekRooms = [
         new GeekRoomModel(1,
+          '#'+ProfileColors.at(Math.floor(Math.random() * ProfileColors.length)),
           [
           new MsgModel({
             message:'Hey, Bheki. Are you Good,Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab aspernatur consectetur, consequatur, doloribus est ex expedita illum labore magni molestiae necessitatibus porro quaerat qui tempore unde? Aliquid architecto et rem.',
@@ -47,6 +49,7 @@ import {MsgModel} from "../../model/msg.model";
             msgId:1113})],
           new GeekModel('siya','makholwa','Seya','siya@gmail.com','+27751020834',new Date())),
         new GeekRoomModel(2,
+          '#'+ProfileColors.at(Math.floor(Math.random() * ProfileColors.length)),
           [
             new MsgModel({
               message:'Hey, Qophi. consequatur, doloribus est ex expedita illum labore magni molestiae necessitatibus porro quaerat qui tempore unde? Aliquid architecto et rem.',
@@ -68,7 +71,7 @@ import {MsgModel} from "../../model/msg.model";
               msgId:1111})],
           new GeekModel('Qophi','makholwa','Mlando','siya@gmail.com','+27751020834',new Date()))
       ]
-      this._activeRoomId=-1
+      this._activeRoomIndex=-1
 
       this._activeRoomChanger = new Subject<void>();
   }
@@ -82,18 +85,25 @@ import {MsgModel} from "../../model/msg.model";
     this._activeRoomChanger = value;
   }
 
-  get activeRoomId(): number {
+  get activeRoomIndex(): number {
 
-    return this._activeRoomId as number;
+    return this._activeRoomIndex as number;
   }
 
-  set activeRoomId(value: number) {
-    this._activeRoomId = value;
+  set activeRoomIndex(value: number) {
+    this._activeRoomIndex = value;
+
+
+  }
+
+  public setActiveRoomIndex(value: number){
+    this._activeRoomIndex = value;
+
 
     if(this._activeRoomChanger){
+      console.log('changing chat: '+value)
       this._activeRoomChanger.next()
     }
-
   }
 
   get geekRooms(): GeekRoomModel[] {

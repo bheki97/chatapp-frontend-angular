@@ -10,7 +10,7 @@ import {GeekRoomModel} from "../../../../model/room/geek-room.model";
 })
 export class ChatSelectItemComponent implements OnInit{
 
-  profileColor = '#'+ProfileColors.at(Math.floor(Math.random() * ProfileColors.length))
+  profileColor = ''
 
   @Input('room') roomIndex:number = -1
   receiverName:string ='bheki97'
@@ -28,6 +28,10 @@ export class ChatSelectItemComponent implements OnInit{
     return this.receiverName.charAt(0).toUpperCase()
   }
 
+  changeActiveChat(){
+    this.roomService.setActiveRoomIndex(this.roomIndex)
+  }
+
 
 
 
@@ -36,7 +40,9 @@ export class ChatSelectItemComponent implements OnInit{
       let room:GeekRoomModel = this.roomService.geekRooms.at(this.roomIndex) as GeekRoomModel
       // console.log(this.roomIndex)
       if (room.receiver){
-        this.receiverName = room.receiver.username||'unknown'
+        this.receiverName = room.receiver.username ||'unknown'
+
+        this.profileColor = room.color
         const messages = room.messages
         this.lastMsg = messages.at(messages.length-1)?.message||'no msg'
         this.lastMsgSender = messages.at(messages.length-1)?.senderId||'unknown'

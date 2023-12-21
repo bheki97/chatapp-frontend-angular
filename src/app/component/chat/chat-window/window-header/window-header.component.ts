@@ -2,6 +2,7 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {GeekRoomService} from "../../../../service/room-service/geek-room.service";
 import {GeekRoomModel} from "../../../../model/room/geek-room.model";
 import {Subscription} from "rxjs";
+import {ProfileColors} from "../../../../../assets/colors/profile-colors";
 
 @Component({
   selector: 'app-window-header',
@@ -12,20 +13,33 @@ export class WindowHeaderComponent implements OnInit,OnDestroy{
 
   activeChatGeek:string =''
   activeChatSubscription? :Subscription
+  profileColor = ''
 
 
   constructor(private roomService:GeekRoomService) {
-    this.activeChatGeek = roomService.geekRooms.at(roomService.activeRoomId)?.receiver.username||''
+    const room = roomService.geekRooms.at(roomService.activeRoomIndex)
+    this.activeChatGeek = room?.receiver.username||''
+    this.profileColor = room?.color || ''
+
 
   }
 
   ngOnInit(): void {
     this.activeChatSubscription = this.roomService.activeRoomChanger.subscribe(() =>{
-      this.activeChatGeek = this.roomService.geekRooms.at(this.roomService.activeRoomId)?.receiver.username||''
+      const room = this.roomService.geekRooms.at(this.roomService.activeRoomIndex)
+      this.activeChatGeek = room?.receiver.username||''
+      this.profileColor = room?.color || ''
+      console.log(this.profileColor)
     })
 
 
   }
+
+  returnInitial():string{
+
+    return this.activeChatGeek.charAt(0).toUpperCase()
+  }
+
 
   ngOnDestroy(): void {
     if(this.activeChatSubscription){

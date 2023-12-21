@@ -15,6 +15,7 @@ export class ChatListComponent implements OnInit{
     this.rooms = roomService.geekRooms.map((v,i,a)=>{
       return i
     } )
+
   }
 
   ngOnInit(): void {

@@ -1,13 +1,15 @@
 <div class="wrapper">
 
-  <div class="profile-icon">
+  <div class="profile-div">
     <div class="center-flex">
-      <img src="assets/profile-icon-180.png" alt="" class="img-responsive">
+      <div class="profile-icon" [style.background-color]="profileColor">
+        <span>{{returnInitial()}}</span>
+      </div>
     </div>
   </div>
   <div class="user-name">
     <div>
-      <h4>bheki97</h4>
+      <h4>{{activeChatGeek}}</h4>
     </div>
 
   </div>

@@ -6,9 +6,23 @@
 
 }
 
-.profile-icon{
-  width: 80px;
+.profile-div{
+  width: 90px;
 }
+
+.profile-icon{
+  background-color: #CB8888;
+  height: 50px;
+  width: 50px;
+  max-height: 80px;
+  max-width: 80px;
+  border-radius: 25px;
+  display: flex;
+  color: white;
+  justify-content: center;
+  align-items: center;
+}
+
 .user-name{
   flex-grow: 1;
   width: 100%;
