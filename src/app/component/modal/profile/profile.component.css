@@ -1,0 +1,259 @@
+.backdrop{
+  position: fixed;
+  top:0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgb(0,0,0,0.4);
+  z-index: 50;
+}
+
+.alert-box{
+  position: fixed;
+  top:20vh;
+  left: 20vw;
+  width: 55vw;
+  border-radius: 8px;
+  min-width: 500px;
+  background-color: white;
+  z-index: 100;
+  box-shadow: 0 4px 8px 4px rgba(0, 0, 0, 0.2);
+
+}
+.content-box{
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+  margin-left: 40px;
+  margin-right: 50px;
+}
+
+.close-box,.profile-btn-row,.profile-details-row,.edit-profile-row,
+.name-email-div,.hr-div,.edit-input-div{
+  display: flex;
+  width: 100%;
+}
+.email-div{
+  display: flex;
+  align-items: center;
+
+}
+.edit-profile-row{
+  flex-direction: column;
+}
+
+
+
+.profile-btn-row{
+  justify-content: start;
+  margin-left: 45px;
+}
+
+.profile-icon-div{
+  height: 120px;
+  width: 120px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn-div>.btn{
+  font-size: 20px;
+  box-shadow: 0 2px 1px 1px rgba(0, 0, 0, 0.1);
+  font-family: 'Kanit Thin', Monaco, "Lucida Console", monospace;
+  font-weight: bolder;
+  padding-bottom: 0;
+  padding-top: 0;
+}
+h2,.email-div>span,.date-div>span,.edit-heading>label{
+  color: #727272;
+}
+
+h2{
+  font-family: 'Kanit Regular';
+  font-weight:bold ;
+  font-size: 37px;
+
+}
+
+.btn-div{
+  flex-grow: 1;
+  display: flex;
+  align-items: end;
+  margin-left: 30px;
+  font-size: 20px;
+  padding-bottom: 10px;
+}
+
+.profile-icon{
+  width: 100px;
+  height: 100px;
+  border-radius: 50px;
+  background-color: #CB8888;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 40px;
+  color: white;
+}
+
+.close-box{
+  justify-content: end;
+}
+
+.close-icon{
+  margin: 5px;
+  width: 25px;
+  height: 25px;
+  border: none;
+}
+
+
+
+.btn{
+
+
+}
+
+.update-btn{
+  margin-right: 15px;
+  background-color: #467CFB;
+  color: white;
+  border: none;
+}
+.update-btn:active{
+  background-color: #467CFB;
+  color: #365BD2;
+}
+
+.reset-btn:active{
+  color: #EEEEEE;
+}
+
+.reset-btn{
+  margin-left: 15px;
+  color: #567DFC;
+  border: none;
+}
+.profile-details-row{
+  margin-top: 20px;
+  margin-bottom: 30px;
+  margin-left: 30px;
+  flex-direction: column;
+
+}
+.email-div>span,.date-div>span,.edit-heading>span{
+  font-family: 'Kanit Thin';
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.date-div{
+  margin-left: 20px;
+}
+.edit-heading{
+  width: fit-content;
+  height: 30px;
+  display: flex;
+  align-items: center;
+}
+.hr-div{
+  flex-direction: row;
+  margin-bottom: 35px;
+}
+
+.hr-div>hr{
+  flex-grow: 1;
+  margin-right: 20px;
+  margin-left: 10px;
+}
+
+
+.edit-input-div{
+  margin-bottom: 40px;
+  margin-left: 50px;
+  flex-wrap: wrap;
+  justify-content: start;
+}
+
+.input-wrapper{
+  background-color: #EEEEEE;
+  width: 60%;
+  height: 55px;
+  display: flex;
+  justify-content: center;
+  align-items: end;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  padding-bottom: 5px;
+
+}
+.input-container>input{
+  background-color: transparent;
+
+  padding-left: 10px !important;
+
+  margin: auto;
+  transition: border-color 0.3s;
+
+}
+
+.input-wrapper>span{
+  color:#467CFB;
+  font-family: 'Kanit Thin', Monaco, "Lucida Console", monospace;
+  margin-left:10px ;
+}
+.input-container>input,.input-container>input:focus{
+  border-left: none;
+  border-right: none;
+  border-top: none;
+  border-bottom: #555 2px solid ;
+
+  outline: none;
+}
+
+.input-div{
+  width: 50%;
+}
+
+.input-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 3px;
+}
+
+input {
+  font-size: 16px;
+  transition: border-color 0.3s;
+  width: 90%;
+  font-family: 'Kanit Light', Monaco, "Lucida Console", monospace;
+  font-weight: bold;
+}
+
+input:focus {
+  border-bottom: #467CFB 2px solid!important;
+}
+
+label {
+  position: absolute;
+  top:-3px;
+  left: 12px;
+  font-family: 'Kanit', Monaco, "Lucida Console", monospace;
+  font-size:20px;
+  color: #555;
+  opacity: 0.8;
+  pointer-events: none;
+  transition: top 0.3s, font-size 0.3s;
+}
+
+input:focus + label,
+input:not(:placeholder-shown) + label {
+  top: -18px;
+  font-size: 16px;
+  color: #467CFB;
+}
+
+input:not(:placeholder-shown) {
+  border-bottom: 2px solid #467CFB !important; /* Change the color as needed */
+}
