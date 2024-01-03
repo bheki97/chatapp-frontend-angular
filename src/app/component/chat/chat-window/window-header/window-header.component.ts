@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {GeekRoomService} from "../../../../service/room-service/geek-room.service";
 import {GeekRoomModel} from "../../../../model/room/geek-room.model";
 import {Subscription} from "rxjs";
@@ -13,6 +13,7 @@ export class WindowHeaderComponent implements OnInit,OnDestroy{
 
   activeChatGeek:string =''
   activeChatSubscription? :Subscription
+  activeNewChatSubscription? :Subscription
   profileColor = ''
 
 
@@ -20,8 +21,6 @@ export class WindowHeaderComponent implements OnInit,OnDestroy{
     const room = roomService.geekRooms.at(roomService.activeRoomIndex)
     this.activeChatGeek = room?.receiver.username||''
     this.profileColor = room?.color || ''
-
-
   }
 
   ngOnInit(): void {
@@ -30,6 +29,11 @@ export class WindowHeaderComponent implements OnInit,OnDestroy{
       this.activeChatGeek = room?.receiver.username||''
       this.profileColor = room?.color || ''
       console.log(this.profileColor)
+    })
+
+    this.activeNewChatSubscription = this.roomService.selectGeekChanger.subscribe(geek=>{
+      this.activeChatGeek = geek.geekName
+      this.profileColor = geek.profileColor
     })
 
 

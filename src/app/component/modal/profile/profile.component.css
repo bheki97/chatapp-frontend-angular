@@ -224,7 +224,7 @@ h2{
 }
 
 input {
-  font-size: 16px;
+  font-size: 20px;
   transition: border-color 0.3s;
   width: 90%;
   font-family: 'Kanit Light', Monaco, "Lucida Console", monospace;

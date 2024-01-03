@@ -1,19 +1,21 @@
 import {GeekRoomModel} from "../../model/room/geek-room.model";
 import {Subject} from "rxjs";
 import {Injectable} from "@angular/core";
-import {ChatMsgModel} from "../../model/chat-msg.model";
 import {GeekModel} from "../../model/geek.model";
 import {MsgModel} from "../../model/msg.model";
 import {ProfileColors} from "../../../assets/colors/profile-colors";
+
 
 
 @Injectable({
   providedIn:'root'
 })export class GeekRoomService{
 
+
   private _geekRooms?:GeekRoomModel[]
   private _activeRoomIndex?:number
   private _activeRoomChanger?:Subject<void>
+  private _selectGeekChanger?:Subject<{geekName:string,profileColor:string}>
 
 
   constructor() {
@@ -72,7 +74,7 @@ import {ProfileColors} from "../../../assets/colors/profile-colors";
           new GeekModel('Qophi','makholwa','Mlando','siya@gmail.com','+27751020834',new Date()))
       ]
       this._activeRoomIndex=-1
-
+      this._selectGeekChanger = new Subject<{geekName: string; profileColor: string}>()
       this._activeRoomChanger = new Subject<void>();
   }
 
@@ -112,6 +114,14 @@ import {ProfileColors} from "../../../assets/colors/profile-colors";
 
   set geekRooms(value: GeekRoomModel[]) {
     this._geekRooms = value;
+  }
+
+  get selectGeekChanger(): Subject<{ geekName: string; profileColor: string }> {
+    return this._selectGeekChanger as Subject<{ geekName: string; profileColor: string }>;
+  }
+
+  set selectGeekChanger(value: Subject<{ geekName: string; profileColor: string }>) {
+    this._selectGeekChanger = value;
   }
 }
 

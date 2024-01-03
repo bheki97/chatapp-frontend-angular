@@ -1,1 +1,25 @@
-<p>search-geek works!</p>
+<div class="backdrop"  (click)="closeModal()"></div>
+<div class="alert-box">
+  <div class="search-box">
+    <div class="search-bar">
+      <input type="text" placeholder="enter geek username">
+      <img src="assets/search-icon.svg" class="search-icon" alt="">
+    </div>
+  </div>
+
+  <div class="result-box">
+    <h5>search results:</h5>
+    <div class="names-wrapper">
+      <ul class="list-group">
+        <li (click)="startChatWithNewGeek('bheki97')" >
+          <div class="list-group-item ">
+            <h2>bheki97</h2>
+            <div class="add-user">
+              <p>select</p>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

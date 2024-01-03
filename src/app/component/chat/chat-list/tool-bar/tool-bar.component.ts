@@ -15,14 +15,17 @@ export class ToolBarComponent {
 
   popUpViewProfile() {
     this.modalService.firePopUp.next(1)
+    this.modalService.activePop=1;
   }
 
   popUpLogout() {
     this.modalService.firePopUp.next(2)
+    this.modalService.activePop=2;
   }
 
   popUpSearchGeek() {
     this.modalService.firePopUp.next(3)
+    this.modalService.activePop=2;
   }
 
 
@@ -35,6 +38,7 @@ export class ToolBarComponent {
     if (!this.isDropdownOpen || this.elementRef.nativeElement.contains(target)) {
       return;
     }
+
 
     this.isDropdownOpen = false;
   }

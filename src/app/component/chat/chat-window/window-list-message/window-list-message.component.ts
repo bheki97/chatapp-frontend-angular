@@ -15,6 +15,8 @@ export class WindowListMessageComponent implements OnInit,OnDestroy{
     messages:MsgModel[] = []
     activeChatGeek = ''
     activeChatSubscription? :Subscription
+    activeNewChatSubscription? :Subscription
+
 
   constructor(private roomService:GeekRoomService) {
     const room = roomService.geekRooms.at(roomService.activeRoomIndex) as GeekRoomModel;
@@ -35,6 +37,10 @@ export class WindowListMessageComponent implements OnInit,OnDestroy{
   }
 
   ngOnInit(): void {
+
+      this.activeNewChatSubscription = this.roomService.selectGeekChanger.subscribe(geek=>{
+        this.messages = []
+      })
 
     this.activeChatSubscription = this.roomService.activeRoomChanger.subscribe(() =>{
       const room = this.roomService.geekRooms.at(this.roomService.activeRoomIndex) as GeekRoomModel;

@@ -25,7 +25,10 @@ export class ChatComponent implements OnInit,OnDestroy{
   }
 
   ngOnInit(): void {
-    this.modalSubscribtion = this.modalService.firePopUp.subscribe(n =>{this.modal=n})
+    this.modalSubscribtion = this.modalService.firePopUp.subscribe(n =>{
+      this.modal=n
+
+    })
   }
 
 }

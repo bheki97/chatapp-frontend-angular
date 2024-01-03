@@ -9,10 +9,22 @@ export class ModalEventService{
 
 
   private _firePopUp?:Subject<number>
+  private _activePop?:number
+
 
 
   constructor() {
     this._firePopUp =new Subject<number>();
+    this._activePop = -1
+  }
+
+
+  get activePop() {
+    return this._activePop;
+  }
+
+  set activePop(value) {
+    this._activePop = value;
   }
 
 

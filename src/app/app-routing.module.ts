@@ -8,7 +8,7 @@ import {ChatComponent} from "./component/chat/chat.component";
 const appRouters:Routes = [
   {path:'',component:LoginComponent},
   {path:'login',component:LoginComponent},
-  {path:'registration',component:RegisterComponent},
+  {path:'register',component:RegisterComponent},
   {path:'chat',component:ChatComponent},
   {path:'verify',component:VerifyCodeComponent}
 ]

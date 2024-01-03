@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import {Component, HostListener} from '@angular/core';
+import {ModalEventService} from "../../../service/modal-service/modal-event.service";
 
 @Component({
   selector: 'app-logout',
@@ -7,4 +8,14 @@ import { Component } from '@angular/core';
 })
 export class LogoutComponent {
 
+
+  constructor(private modalService:ModalEventService) {
+
+
+  }
+
+
+  closeModal(){
+    this.modalService.firePopUp.next(-1)
+  }
 }
