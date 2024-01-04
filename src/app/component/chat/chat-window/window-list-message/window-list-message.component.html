@@ -5,7 +5,12 @@
     <div class="sent-flex" *ngIf="a.senderId!==activeChatGeek" >
       <div class="msg sender" >
         <p>{{a.message}}</p>
-        <div class="time" ><p>{{formatTime(a.sendDate)}}</p></div>
+        <div class="time time-sent" >
+          <p>{{formatTime(a.sendDate)}} </p>
+          <div class="tick" *ngIf="msgStatus===1" style="background-image: url('assets/sent-icon.svg')"></div>
+          <div class="tick" *ngIf="msgStatus===2" style="background-image: url('assets/received-icon.svg')"></div>
+          <div class="tick" *ngIf="msgStatus===3" style="background-image: url('assets/read-icon.svg')"></div>
+        </div>
       </div>
 
       <!--      <img src="assets/sent-msg-panel.png" alt="" class="img-responsive">-->
@@ -16,7 +21,10 @@
 
       <div class="msg receiver" >
         <p>{{a.message}}</p>
-        <div class="time"><p>{{formatTime(a.sendDate)}}</p></div>
+        <div class="time time-received">
+          <p>{{formatTime(a.sendDate)}}</p>
+
+        </div>
       </div>
 
 

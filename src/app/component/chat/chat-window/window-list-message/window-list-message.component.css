@@ -35,7 +35,16 @@
   padding: 10px;
 }
 p{
+  font-family: 'Kanit', Monaco, "Lucida Console", monospace;
   margin: 0;
+}
+
+.tick{
+  width: 20px;
+  height: 20px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: bottom center;
 }
 
 .time{
@@ -44,8 +53,8 @@ p{
   display: flex;
   justify-content: end;
   font-size: smaller;
-
 }
+
 
 .receiver{
   border-bottom-left-radius: 8px;
@@ -58,6 +67,6 @@ p{
   border-bottom-left-radius: 8px;
   border-top-right-radius: 8px;
   border-top-left-radius: 8px;
-  background-color: #88ACFF;
+  background-color: #93B3FF;
   margin-right: 10px;
 }

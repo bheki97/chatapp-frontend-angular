@@ -20,6 +20,8 @@
               <div class="row">
                 <div class="col-sm-12 form group input-container input-field-box">
                   <input formControlName="firstname" type="text" id="name" placeholder="first name" class="form-control rounded-pill">
+                  <span *ngIf="registrationFormGroup.get('firstname')?.touched &&
+                                          !registrationFormGroup.get('firstname')?.valid" class="text-danger">first name should have at least 2 characters</span>
 
                 </div>
               </div>
@@ -27,7 +29,10 @@
             <div class="col-12 col-md-6 justify-content-center">
               <div class="row">
                 <div class="col-sm-12 form group input-container input-field-box">
-                  <input formControlName="lastname" type="text" id="lastname" placeholder="last name" class="form-control rounded-pill">
+                  <input formControlName="lastname" type="text" id="lastname" (input)="onInput($event)" placeholder="last name" class="form-control rounded-pill">
+                  <span *ngIf="registrationFormGroup.get('lastname')?.touched &&
+                                          !registrationFormGroup.get('lastname')?.valid" class="text-danger">last name should have at least 2 characters</span>
+
                 </div>
               </div>
             </div>
@@ -43,7 +48,7 @@
                 <div class="col-sm-12 form group input-container input-field-box">
                   <input formControlName="email" type="text" id="email" placeholder="email" class="form-control rounded-pill">
                   <span *ngIf="registrationFormGroup.get('email')?.touched &&
-                                          !registrationFormGroup.get('email')?.valid" class="text-danger">Please enter the name</span>
+                                          !registrationFormGroup.get('email')?.valid" class="text-danger">please enter valid email address</span>
 
                 </div>
               </div>
@@ -51,28 +56,33 @@
             <div class="col-12 col-md-6 justify-content-center">
               <div class="row">
                 <div class="col-sm-12 form group input-container input-field-box">
-                  <input formControlName="cellNumber" type="text" id="contact" placeholder="contact no." class="form-control rounded-pill">
+                  <input formControlName="cellNumber" (input)="onInput($event)" type="text" id="contact" placeholder="contact no." class="form-control rounded-pill">
+                  <span *ngIf="registrationFormGroup.get('cellNumber')?.touched &&
+                                          !registrationFormGroup.get('cellNumber')?.valid" class="text-danger">please enter valid cell number</span>
                 </div>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- contact No. and email -->
+        <!-- Password and Confirm Password -->
         <div class="container">
           <div class="row">
             <div class="col-12 col-md-6 justify-content-center">
               <div class="row">
                 <div class="col-sm-12 form-group input-container input-field-box">
                   <input formControlName="password" type="password" id="password" placeholder="password" class="form-control rounded-pill">
+                  <span *ngIf="registrationFormGroup.get('password')?.touched &&
+                                          !registrationFormGroup.get('password')?.valid" class="text-danger">please enter valid password</span>
                 </div>
               </div>
             </div>
             <div class="col-12 col-md-6 justify-content-center">
               <div class="row">
-                <div class="col-sm-12 form-group input-group input-container input-field-box ">
+                <div class="col-sm-12 form-group input-container input-field-box">
                   <input formControlName="confirmPassword" type="password" id="cpassword" placeholder="confirm password" class="form-control rounded-pill">
-
+                  <span *ngIf="registrationFormGroup.get('confirmPassword')?.touched &&
+                                          !registrationFormGroup.get('confirmPassword')?.valid" class="text-danger">password does not match</span>
                 </div>
               </div>
             </div>

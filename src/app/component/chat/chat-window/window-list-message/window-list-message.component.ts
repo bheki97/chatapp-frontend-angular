@@ -16,6 +16,7 @@ export class WindowListMessageComponent implements OnInit,OnDestroy{
     activeChatGeek = ''
     activeChatSubscription? :Subscription
     activeNewChatSubscription? :Subscription
+    msgStatus = 1
 
 
   constructor(private roomService:GeekRoomService) {
@@ -46,7 +47,16 @@ export class WindowListMessageComponent implements OnInit,OnDestroy{
       const room = this.roomService.geekRooms.at(this.roomService.activeRoomIndex) as GeekRoomModel;
       this.activeChatGeek = room.receiver.username;
       this.messages = room.messages
+
+
     })
+    setTimeout(()=>{
+      this.msgStatus = 2
+    },3000)
+    setTimeout(()=>{
+      this.msgStatus = 3
+    },6000)
+
 
   }
 
