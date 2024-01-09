@@ -8,18 +8,22 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 })
 export class RegisterComponent implements OnInit{
   active = false;
+  errMsg = 'geek already exists'
+
 
   status = 1;
 
   registrationFormGroup: FormGroup = new FormGroup({
       'firstname':new FormControl(null,
         [
-          Validators.required
+          Validators.required,
+          this.fieldHasLessThan2Chars
         ]
       ),
       'lastname':new FormControl(null,
         [
-          Validators.required
+          Validators.required,
+          this.fieldHasLessThan2Chars
         ]
       ),
       'email':new FormControl(null,
@@ -56,9 +60,18 @@ export class RegisterComponent implements OnInit{
 
   passHasLessThan8Chars(formControl:FormControl): {[s:string]:boolean }|null {
     // console.log(formControl.touched)
-    if(formControl.value && formControl.value.length<8){
+    if(!formControl.value || formControl.value.length<8){
 
         return {hasLessThan8Chars :true};
+    }
+
+    return null;
+  }
+  fieldHasLessThan2Chars(formControl:FormControl): {[s:string]:boolean }|null {
+    // console.log(formControl.touched)
+    if(!formControl.value || formControl.value.length<2){
+
+      return {hasLessThan2Chars :true};
     }
 
     return null;
@@ -68,15 +81,17 @@ export class RegisterComponent implements OnInit{
 
     return /[^a-zA-Z0-9]/.test(formControl.value)? null:{hasNoSpecChars :true};
   }
-
+  count=-1
   passHasNoLowercase(formControl:FormControl): {[s:string]:boolean }|null {
 
-    return /[A-Z]/.test(formControl.value)? null:{hasNoLowercase :true};
+
+
+    return /[a-z]/.test(formControl.value)? null:{hasNoLowercase :true};
   }
 
   passHasNoUppercase(formControl:FormControl): {[s:string]:boolean }|null {
 
-    return /[a-z]/.test(formControl.value)? null:{hasNoUppercase :true};
+    return /[A-Z]/.test(formControl.value)? null:{hasNoUppercase :true};
   }
 
   passHasNoNumeric(formControl:FormControl): {[s:string]:boolean }|null {
@@ -85,9 +100,12 @@ export class RegisterComponent implements OnInit{
   }
 
   confirmPasswordMatchesNot(formControl:FormControl): {[s:string]:boolean }|null {
-
-    return formControl.touched && this.registrationFormGroup && this.registrationFormGroup.get('password') && formControl.value===this.registrationFormGroup.get('password')?.value? null:{hasNoSpecChars :true};
+    if(this.registrationFormGroup){
+      console.log(this.registrationFormGroup.valid)
+    }
+    return formControl.touched && this.registrationFormGroup && this.registrationFormGroup.get('password') && formControl.value===this.registrationFormGroup.get('password')?.value? null:{confirmPasswordMatchesNot :true};
   }
+
 
   onInput(event: any){
     if(this.registrationFormGroup){
@@ -98,6 +116,13 @@ export class RegisterComponent implements OnInit{
       }
 
     }
+  }
+
+
+  submitForm(){
+    console.log(this.registrationFormGroup)
+    console.log(this.registrationFormGroup.valid)
+    this.registrationFormGroup.reset()
   }
 
 }

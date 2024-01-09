@@ -4,24 +4,31 @@
 <div class="main-div d-flex justify-content-center align-items-center ">
   <div class="container shadow  app-container  col-12 rounded " style=" background-color: white;">
 
-    <div class="container background-image py-0 py-md-5" style="height: 100%; min-height: fit-content;">
+    <div class="container background-image " style="height: 100%; min-height: fit-content;">
       <div class="row">
         <div class="col-12 d-flex justify-content-center">
           <h1 class="space-head">Register Account</h1>
         </div>
       </div>
-      <form class="py-0 py-md-4" [formGroup]="registrationFormGroup" (ngSubmit)="formSubmit()">
+      <form class="py-0 py-md-1" [formGroup]="registrationFormGroup" (ngSubmit)="submitForm()">
 
 
         <!-- first name and last name -->
         <div class="container">
           <div class="row">
+            <div class="col-12 d-flex justify-content-center">
+              <p class="err-msg text-danger" *ngIf="errMsg || errMsg!==''">{{errMsg}}</p>
+            </div>
+          </div>
+          <div class="row">
             <div class="col-12 col-md-6 justify-content-center">
               <div class="row">
                 <div class="col-sm-12 form group input-container input-field-box">
                   <input formControlName="firstname" type="text" id="name" placeholder="first name" class="form-control rounded-pill">
-                  <span *ngIf="registrationFormGroup.get('firstname')?.touched &&
-                                          !registrationFormGroup.get('firstname')?.valid" class="text-danger">first name should have at least 2 characters</span>
+                  <span *ngIf="registrationFormGroup.get('firstname')?.touched && !registrationFormGroup.get('firstname')?.valid" class="text-danger">
+                    <span *ngIf="registrationFormGroup.get('firstname')?.errors?.['required']">field required</span>
+                    <span *ngIf="!registrationFormGroup.get('firstname')?.errors?.['required'] && registrationFormGroup.get('firstname')?.errors?.['hasLessThan2Chars']">cannot be less than 2 chars</span>
+                  </span>
 
                 </div>
               </div>
@@ -29,9 +36,12 @@
             <div class="col-12 col-md-6 justify-content-center">
               <div class="row">
                 <div class="col-sm-12 form group input-container input-field-box">
-                  <input formControlName="lastname" type="text" id="lastname" (input)="onInput($event)" placeholder="last name" class="form-control rounded-pill">
+                  <input formControlName="lastname" type="text" id="lastname"  placeholder="last name" class="form-control rounded-pill">
                   <span *ngIf="registrationFormGroup.get('lastname')?.touched &&
-                                          !registrationFormGroup.get('lastname')?.valid" class="text-danger">last name should have at least 2 characters</span>
+                                          !registrationFormGroup.get('lastname')?.valid" class="text-danger">
+                    <span *ngIf="registrationFormGroup.get('lastname')?.errors?.['required']">field required</span>
+                    <span *ngIf="!registrationFormGroup.get('lastname')?.errors?.['required'] && registrationFormGroup.get('lastname')?.errors?.['hasLessThan2Chars']">cannot be less than 2 chars</span>
+                  </span>
 
                 </div>
               </div>
@@ -73,7 +83,13 @@
                 <div class="col-sm-12 form-group input-container input-field-box">
                   <input formControlName="password" type="password" id="password" placeholder="password" class="form-control rounded-pill">
                   <span *ngIf="registrationFormGroup.get('password')?.touched &&
-                                          !registrationFormGroup.get('password')?.valid" class="text-danger">please enter valid password</span>
+                                          !registrationFormGroup.get('password')?.valid">
+                    <p [ngClass]="{'text-danger': registrationFormGroup.get('password')?.errors?.['hasNoSpecChars']}">Must contain at least 1 Special Character*</p>
+                    <p [ngClass]="{'text-danger': registrationFormGroup.get('password')?.errors?.['hasLessThan8Chars']}">Must contain min 8 Characters*</p>
+                    <p [ngClass]="{'text-danger': registrationFormGroup.get('password')?.errors?.['hasNoNumeric']}">Must contain at least 1 Number*</p>
+                    <p [ngClass]="{'text-danger': registrationFormGroup.get('password')?.errors?.['hasNoUppercase']}">Must contain at least 1 Uppercase*</p>
+                    <p [ngClass]="{'text-danger': (registrationFormGroup.get('password')?.errors?.['required']||registrationFormGroup.get('password')?.errors?.['hasNoLowercase'])}">Must contain at least 1 Lowercase*</p>
+                  </span>
                 </div>
               </div>
             </div>
@@ -82,7 +98,10 @@
                 <div class="col-sm-12 form-group input-container input-field-box">
                   <input formControlName="confirmPassword" type="password" id="cpassword" placeholder="confirm password" class="form-control rounded-pill">
                   <span *ngIf="registrationFormGroup.get('confirmPassword')?.touched &&
-                                          !registrationFormGroup.get('confirmPassword')?.valid" class="text-danger">password does not match</span>
+                                          !registrationFormGroup.get('confirmPassword')?.valid" class="text-danger">
+                    <span *ngIf="!registrationFormGroup.get('password')?.valid">enter valid password first</span>
+                    <span *ngIf="registrationFormGroup.get('password')?.valid && registrationFormGroup.get('confirmPassword')?.errors?.['confirmPasswordMatchesNot']">password does not match</span>
+                  </span>
                 </div>
               </div>
             </div>
@@ -99,7 +118,8 @@
                 <div class="col-6" >
                   <div class="row">
                     <div class="form-group">
-                      <button type="submit" class="btn rounded-pill register-btn btn-txt" style="min-width: fit-content;width: 100%; background-color: #365BD2;">register</button>
+                      <button type="submit" class="btn rounded-pill register-btn btn-txt" style="min-width: fit-content;width: 100%; background-color: #365BD2;"
+                       [disabled]="!registrationFormGroup.valid" >register</button>
                     </div>
                   </div>
                 </div>

@@ -73,7 +73,21 @@ body {
 
   }
 }
+@media (max-width: 576px) {
+  .app-container {
+    max-width: 60%;
+    min-width: 280px;
+    max-height: 90%;
+    height: fit-content;
+  }
 
+}
+
+@media (max-width: 767px) {
+  .background-image{
+    background-image: none!important;
+  }
+}
 
 
 
@@ -81,12 +95,13 @@ body {
   .app-container {
     max-width: 60%;
     max-height: 90%;
-    height: 70%;
+    height: fit-content;
   }
   .mini-container {
     max-width: 60%;
     max-height: 90%;
     height: 70%;
+
   }
 }
 

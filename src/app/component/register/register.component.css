@@ -9,6 +9,10 @@ input[type="number"]::-webkit-outer-spin-button {
   margin: 0;
 }
 
+p{
+  margin: 0;
+}
+
 
 .background-image {
     background-image: url('./Sign up-pana 2.png');
@@ -17,6 +21,7 @@ input[type="number"]::-webkit-outer-spin-button {
     background-repeat: no-repeat;
     background-position: center bottom;
     width: 100%;
+    padding-top: 30px;
     min-height: fit-content;
     max-height: 100%;
   }
@@ -38,7 +43,11 @@ input.ng-invalid.ng-touched:focus{
     margin-bottom: 20px;
     text-decoration: none;
   }
-
+.err-msg{
+  font-family: 'Kanit Bold', sans-serif;
+  font-style: italic;
+  font-size: 22px;
+}
 
   input{
     background-color: #EEEEEE;
@@ -53,9 +62,15 @@ input.ng-invalid.ng-touched:focus{
   margin-block: 5px;
 }
 
+button[disabled]{
+  opacity: 0.8;
+  color: white;
+}
+
 span{
   font-family: Kanit, sans-serif;
   font-style: italic;
+  font-size: 14px;
   opacity: 0.8;
 }
 
