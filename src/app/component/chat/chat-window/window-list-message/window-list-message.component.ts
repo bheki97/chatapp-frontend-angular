@@ -13,7 +13,7 @@ import {Subscription} from "rxjs";
 export class WindowListMessageComponent implements OnInit,OnDestroy{
 
     messages:MsgModel[] = []
-    activeChatGeek = ''
+    activeChatGeek:string = ''
     activeChatSubscription? :Subscription
     activeNewChatSubscription? :Subscription
     msgStatus = 1
@@ -21,8 +21,9 @@ export class WindowListMessageComponent implements OnInit,OnDestroy{
 
   constructor(private roomService:GeekRoomService) {
     const room = roomService.geekRooms.at(roomService.activeRoomIndex) as GeekRoomModel;
-    this.activeChatGeek = room.receiver.username;
-    this.messages = room.messages
+    if(room.receiver.username)this.activeChatGeek =room.receiver.username
+
+      this.messages = room.messages
 
 
   }
@@ -45,7 +46,8 @@ export class WindowListMessageComponent implements OnInit,OnDestroy{
 
     this.activeChatSubscription = this.roomService.activeRoomChanger.subscribe(() =>{
       const room = this.roomService.geekRooms.at(this.roomService.activeRoomIndex) as GeekRoomModel;
-      this.activeChatGeek = room.receiver.username;
+      if(room.receiver.username) this.activeChatGeek =room.receiver.username
+
       this.messages = room.messages
 
 

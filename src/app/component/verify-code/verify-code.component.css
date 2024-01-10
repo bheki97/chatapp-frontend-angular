@@ -16,6 +16,11 @@ p{
   }
 }
 
+button[disabled]{
+  opacity: 0.8;
+  color: white;
+}
+
 input{
   width: 60%;
 }
@@ -41,6 +46,10 @@ input{
     width: 350px;
   }
 
+}
+
+p{
+  font-family: 'Kanit', Monaco, "Lucida Console", monospace;
 }
 
 @media only screen and (max-width: 768px) {

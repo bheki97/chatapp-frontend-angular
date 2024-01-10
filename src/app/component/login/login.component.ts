@@ -17,8 +17,8 @@ export class LoginComponent {
 
 
   loginFormGroup: FormGroup = new FormGroup({
-    'username':new FormControl(),
-    'password':new FormControl()
+    'username':new FormControl(null),
+    'password':new FormControl(null)
   })
 
   divOnFocusOrBlur(divId:string,action:boolean){

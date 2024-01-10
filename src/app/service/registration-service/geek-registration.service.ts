@@ -2,6 +2,8 @@ import {Injectable} from "@angular/core";
 import {GeekModel} from "../../model/geek.model";
 import {HttpClient} from "@angular/common/http";
 import {EmailSmsCodeModel} from "../../model/email-sms-code.model";
+import {Observable} from "rxjs";
+
 
 
 @Injectable({
@@ -9,32 +11,25 @@ import {EmailSmsCodeModel} from "../../model/email-sms-code.model";
 })export class GeekRegistrationService {
 
   geek:GeekModel|null = null
-  emailSmsCodeModel :EmailSmsCodeModel<any,any>|null = null
 
   constructor(private httpClient:HttpClient) {
 
   }
 
 
-  requestForVerification(geek?:GeekModel):boolean{
+  requestForVerification(geek?:GeekModel):Observable<EmailSmsCodeModel<any,any>>|undefined{
     if(geek){
       this.geek = geek;
+      console.log(geek)
+      return this.httpClient.post<EmailSmsCodeModel<any,any>>('http://localhost:8080/registration/verify',geek)
     }
 
-    if(this.geek){
-
-    }
-
-    return true;
+    return undefined;
   }
 
 
-
-
-  completeRegistration():string|boolean{
-
-
-    return 'completed!'
+  completeRegistration():Observable<boolean>{
+    return this.httpClient.post<boolean>('http://localhost:8080/registration',this.geek)
   }
 
 }

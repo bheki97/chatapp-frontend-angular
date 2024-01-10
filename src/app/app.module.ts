@@ -23,11 +23,15 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {GeekRoomService} from "./service/room-service/geek-room.service";
 import { SearchGeekComponent } from './component/modal/search-geek/search-geek.component';
 import {ModalEventService} from "./service/modal-service/modal-event.service";
+import {ShortEmailPipe} from "./pipe/short-email.pipe";
+import {ShortenCellNoPipe} from "./pipe/shorten-cellno.pipe";
 
 
 
 @NgModule({
   declarations: [
+    ShortEmailPipe,
+    ShortenCellNoPipe,
     AppComponent,
     LoginComponent,
     RegisterComponent,

@@ -1,14 +1,18 @@
 <div class="main-div ">
   <div class="mini-div rounded shadow-lg ">
     <h1>Email & Cell number Verification</h1>
-    <p>Check the email and SMS verification code sent to the email address  ***97@gmail.com and cell number 07* *** **03 </p>
-    <form>
+    <p>Hey {{name}}, Check the email and SMS verification code sent to the email address  {{email|shortenEmail}} and cell number {{cellNum|shortenCellNo}} </p>
+    <p class="text-danger fst-italic" *ngIf="(errMsg ||errMsg!=='') && !verifyForm.touched">{{errMsg}}</p>
+    <form [formGroup]="verifyForm" (ngSubmit)="submitForm()">
+
       <div class="row  mt-4">
         <div class="col-md-6 col-12 form-row">
-          <input type="text" class="form-control" name="" id="" placeholder="email code">
+          <input formControlName="emailCode" type="text" class="form-control" name=""  placeholder="email code" required >
+          <p class="text-danger m-0" *ngIf="verifyForm.get('emailCode')?.touched && !verifyForm.get('emailCode')?.valid">Filled required</p>
         </div>
-        <div class="col-md-6 col-12 form-row form-group input-container input-field-box">
-          <input type="text" class="form-control rounded" name="" id="" placeholder="cellNo. code">
+        <div class="col-md-6 col-12 d-flex flex-column form-row form-group input-container input-field-box">
+          <input formControlName="smsCode" type="text" class="form-control rounded" name=""  placeholder="sms code" required >
+          <p class="text-danger m-0" *ngIf="verifyForm.get('smsCode')?.touched && !verifyForm.get('smsCode')?.valid">Filled required</p>
         </div>
       </div>
 
@@ -16,7 +20,7 @@
         <div class="col-md-6 col-12"></div>
         <div class="col-md-6 col-12 form-row" >
           <div class="btn-row">
-            <button class="btn rounded register-btn" style="min-width: fit-content; background-color: #365BD2;">Confirm</button>
+            <button type="submit" [disabled]="!verifyForm.valid" class="btn rounded register-btn" style="min-width: fit-content; background-color: #365BD2;">Confirm</button>
           </div>
         </div>
       </div>

@@ -49,7 +49,7 @@ import {ProfileColors} from "../../../assets/colors/profile-colors";
             sendDate:new Date(),
             senderId:'Seya',
             msgId:1113})],
-          new GeekModel('siya','makholwa','Seya','siya@gmail.com','+27751020834',new Date())),
+          new GeekModel('siya','makholwa','Seya','siya@gmail.com','+27751020834','',new Date())),
         new GeekRoomModel(2,
           '#'+ProfileColors.at(Math.floor(Math.random() * ProfileColors.length)),
           [
@@ -71,7 +71,7 @@ import {ProfileColors} from "../../../assets/colors/profile-colors";
               senderId:'bheki',
               sendDate:new Date(),
               msgId:1111})],
-          new GeekModel('Qophi','makholwa','Mlando','siya@gmail.com','+27751020834',new Date()))
+          new GeekModel('Qophi','makholwa','Mlando','siya@gmail.com','+27751020834','',new Date()))
       ]
       this._activeRoomIndex=-1
       this._selectGeekChanger = new Subject<{geekName: string; profileColor: string}>()

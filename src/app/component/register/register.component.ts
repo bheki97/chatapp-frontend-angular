@@ -1,5 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {GeekRegistrationService} from "../../service/registration-service/geek-registration.service";
+import {generate} from "rxjs";
+import {GeekModel} from "../../model/geek.model";
+import {Router} from "@angular/router";
+import {SmsEmailVerifierService} from "../../service/verify-service/sms-email-verifier.service";
 
 @Component({
   selector: 'app-register',
@@ -8,7 +13,8 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 })
 export class RegisterComponent implements OnInit{
   active = false;
-  errMsg = 'geek already exists'
+  errMsg = ''
+  geekDetails:GeekModel|undefined
 
 
   status = 1;
@@ -49,13 +55,16 @@ export class RegisterComponent implements OnInit{
       ]),
   });
 
-  ngOnInit(): void {
+
+
+  constructor(private verifyService:SmsEmailVerifierService,private regisService:GeekRegistrationService,private router:Router) {
 
 
   }
 
-  formSubmit(){
-    console.log(this.registrationFormGroup)
+  ngOnInit(): void {
+
+
   }
 
   passHasLessThan8Chars(formControl:FormControl): {[s:string]:boolean }|null {
@@ -120,9 +129,37 @@ export class RegisterComponent implements OnInit{
 
 
   submitForm(){
-    console.log(this.registrationFormGroup)
-    console.log(this.registrationFormGroup.valid)
-    this.registrationFormGroup.reset()
+
+    this.geekDetails  = new GeekModel()
+
+    this.geekDetails.email = this.registrationFormGroup.get('email')?.value
+    this.geekDetails.firstname = this.registrationFormGroup.get('firstname')?.value
+    this.geekDetails.lastname = this.registrationFormGroup.get('lastname')?.value
+    this.geekDetails.cellNumber = this.registrationFormGroup.get('cellNumber')?.value
+    this.geekDetails.password = this.registrationFormGroup.get('password')?.value
+
+    const result = this.regisService.requestForVerification(this.geekDetails)
+
+    if(result){
+      this.errMsg=''
+
+      result.subscribe(data =>{
+        this.verifyService.emailSmsCodeModel = data
+        console.log(data)
+        this.router.navigate(['/verify']).then(r => {
+
+        })
+        this.registrationFormGroup.reset()
+      },error => {
+        console.log(error.error)
+        this.errMsg = error.error
+      })
+
+    }else{
+      this.errMsg = 'please enter valid data'
+    }
+
+
   }
 
 }
