@@ -16,6 +16,7 @@ export class LoginComponent {
   activeToggleImg='assets/view-pwd-icon.svg'
   passwordType = 'password'
   btnClicked = false
+  formSubmitted = false
   msg = ''
   loginFormGroup: FormGroup = new FormGroup({
     'username':new FormControl(null,Validators.required),
@@ -50,15 +51,19 @@ export class LoginComponent {
 
   submitForm() {
     this.btnClicked = true
+    this.formSubmitted = true
     if(this.loginFormGroup.valid){
+
       this.btnClicked = false
+      this.msg = ''
 
       this.geekAuthService.authenticateUser(
         {username:this.loginFormGroup.get('username')?.value,
-        password:this.loginFormGroup.get('username')?.value})
+        password:this.loginFormGroup.get('password')?.value})
         .subscribe( data =>{
 
           this.geekAuthService.authGeek = data
+          console.log(data)
           this.geekAuthService.isAuthenticated = true
           this.router.navigate(['/chat']).then()
 
@@ -66,6 +71,7 @@ export class LoginComponent {
       },error => {
 
           this.msg = error.error
+          console.log(this.msg)
 
         })
 

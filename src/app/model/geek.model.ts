@@ -3,8 +3,8 @@
 
 export class GeekModel {
 
-
-  constructor(public firstname?:string,
+  constructor(public geekId?:number,
+              public firstname?:string,
               public lastname?:string,
               public username?:string,
               public email?:string,

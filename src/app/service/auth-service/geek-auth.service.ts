@@ -18,7 +18,7 @@ import {Observable} from "rxjs";
 
   authenticateUser(auth:{username:string,password:string}):Observable<AuthGeekModel>{
 
-    return this.httpClient.post<AuthGeekModel>('',auth);
+    return this.httpClient.post<AuthGeekModel>('http://localhost:8080/auth',auth);
   }
 
 
