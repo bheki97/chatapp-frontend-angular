@@ -1,6 +1,7 @@
 import {Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
 import {AuthGeekModel} from "../../model/auth-geek.model";
+import {Observable} from "rxjs";
 
 
 @Injectable({
@@ -9,17 +10,18 @@ import {AuthGeekModel} from "../../model/auth-geek.model";
 
   isAuthenticated = false
 
-  public authGeek:AuthGeekModel|null = null
+  public authGeek:AuthGeekModel = new AuthGeekModel()
 
   constructor(private httpClient:HttpClient) {
 
   }
 
-  authenticateUser(auth:{username:string,password:string}):string|boolean{
+  authenticateUser(auth:{username:string,password:string}):Observable<AuthGeekModel>{
 
-
-    return false;
+    return this.httpClient.post<AuthGeekModel>('',auth);
   }
+
+
 
 
 

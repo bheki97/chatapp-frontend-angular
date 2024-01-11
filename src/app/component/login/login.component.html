@@ -18,19 +18,30 @@
         </div>
         <form [formGroup]="loginFormGroup" (ngSubmit)="submitForm()" >
           <div class="row d-flex justify-content-center mb-2">
-            <div [ngClass]="{'input-field-focused':usernameDivOnFocus}" id="usernameField" class="col-sm-8 input-container input-field">
-              <input formControlName="username" (focus)="divOnFocusOrBlur('username',true)" (blur)="divOnFocusOrBlur('username',false)" type="text" placeholder="username">
+
+            <div class="col-sm-8 d-flex flex-column p-0">
+              <div [ngClass]="{'input-field-focused':usernameDivOnFocus}" id="usernameField" class=" input-container input-field p-0">
+                <input class="ms-2" formControlName="username" (focus)="divOnFocusOrBlur('username',true)" (blur)="divOnFocusOrBlur('username',false)" type="text" placeholder="username">
+              </div>
+              <p class="m-0 text-danger" *ngIf="(btnClicked && loginFormGroup.get('username')?.touched && loginFormGroup.get('username')?.invalid) ||(btnClicked && loginFormGroup.get('username')?.invalid)">Filled required</p>
             </div>
+
           </div>
+
           <div class="row d-flex justify-content-center mb-1">
+
             <div class="col-sm-8  d-flex flex-column p-0">
-              <div class="input-container input-field p-0" [ngClass]="{'input-field-focused':passwordDivOnFocus}" id="passwordField">
-                <input formControlName="password" (focus)="divOnFocusOrBlur('password',true)" (blur)="divOnFocusOrBlur('password',false)"  [type]="passwordType" placeholder="password">
+
+              <div class="input-container input-field p-0 " [ngClass]="{'input-field-focused':passwordDivOnFocus}" id="passwordField">
+                <input class="ms-2" formControlName="password" (focus)="divOnFocusOrBlur('password',true)" (blur)="divOnFocusOrBlur('password',false)"  [type]="passwordType" placeholder="password">
                 <span class="pwd-icon" [ngStyle]="{'background-image': 'url(' + activeToggleImg + ')'}" (click)="passwordToggle()"></span>
               </div>
+
+              <p class="m-0 text-danger" *ngIf="(btnClicked && loginFormGroup.get('password')?.touched &&loginFormGroup.get('password')?.invalid) ||(btnClicked && loginFormGroup.get('password')?.invalid)">Filled required</p>
               <div class=" login-link d-flex input-container justify-content-end input-field-box">
                 forgot password?
               </div>
+
             </div>
           </div>
 
