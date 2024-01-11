@@ -41,6 +41,7 @@ export class VerifyCodeComponent {
 
       this.registrationService.completeRegistration().subscribe(data=>{
         if(data){
+
           console.log('Correct, registration completed')
           this.router.navigate(['/login']).then()
         }else{

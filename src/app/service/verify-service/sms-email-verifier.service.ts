@@ -14,7 +14,7 @@ import {EmailSmsCodeModel} from "../../model/email-sms-code.model";
     const email = this.emailSmsCodeModel.emailCode
     const sms = this.emailSmsCodeModel.smsCode
 
-    console.log({sjd: sms,df:email})
+    console.log({sms: sms,email:email})
 
     return this.emailSmsCodeModel.emailCode==verification.emailCode &&
       this.emailSmsCodeModel.smsCode==verification.smsCode;

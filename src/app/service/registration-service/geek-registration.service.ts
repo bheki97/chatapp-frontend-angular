@@ -21,7 +21,7 @@ import {Observable} from "rxjs";
     if(geek){
       this.geek = geek;
       console.log(geek)
-      return this.httpClient.post<EmailSmsCodeModel<any,any>>('http://localhost:8080/registration/verify',geek)
+      return this.httpClient.post<EmailSmsCodeModel<any,any>>('http://localhost:8080/registration/verification',geek)
     }
 
     return undefined;
