@@ -1,14 +1,14 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {GeekAuthService} from "../../service/auth-service/geek-auth.service";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit{
 
   usernameDivOnFocus = false
   passwordDivOnFocus = false
@@ -25,6 +25,7 @@ export class LoginComponent {
 
 
   constructor(private geekAuthService:GeekAuthService,private router:Router) {
+
   }
 
   divOnFocusOrBlur(divId:string,action:boolean){
@@ -80,6 +81,12 @@ export class LoginComponent {
 
 
     }
+
+
+  }
+
+  ngOnInit(): void {
+
 
 
   }

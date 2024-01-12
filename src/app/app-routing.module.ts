@@ -4,12 +4,13 @@ import {RegisterComponent} from "./component/register/register.component";
 import {NgModule} from "@angular/core";
 import {VerifyCodeComponent} from "./component/verify-code/verify-code.component";
 import {ChatComponent} from "./component/chat/chat.component";
+import {authGuard} from "./guard/auth.guard";
 
 const appRouters:Routes = [
   {path:'',component:LoginComponent},
   {path:'login',component:LoginComponent},
   {path:'register',component:RegisterComponent},
-  {path:'chat',component:ChatComponent},
+  {path:'chat',component:ChatComponent,canActivate:[authGuard]},
   {path:'verify',component:VerifyCodeComponent}
 ]
 @NgModule({
