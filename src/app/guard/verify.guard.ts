@@ -14,6 +14,6 @@ export const verifyGuard: CanActivateFn = (route, state) => {
   }
 
   routeMsgServ.routeMsgService = "Please Register First before you can verify"
-  router.navigate(['/login']).then()
+  router.navigate(['/register']).then()
   return false;
 }

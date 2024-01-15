@@ -18,6 +18,7 @@
           <div class="row">
             <div class="col-12 d-flex justify-content-center">
               <p class="err-msg text-danger" *ngIf="errMsg || errMsg!==''">{{errMsg}}</p>
+              <p class="text-center text-success fw-bold fst-normal" *ngIf="((routMessage ||routMessage!=='') && (!registrationFormGroup.touched && registrationFormGroup.invalid &&!submitted))">{{routMessage}}</p>
             </div>
           </div>
           <div class="row">

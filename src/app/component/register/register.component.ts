@@ -5,6 +5,7 @@ import {generate} from "rxjs";
 import {GeekModel} from "../../model/geek.model";
 import {Router} from "@angular/router";
 import {SmsEmailVerifierService} from "../../service/verify-service/sms-email-verifier.service";
+import {RouteMsgService} from "../../service/route-msg-service/route-msg.service";
 
 @Component({
   selector: 'app-register',
@@ -14,7 +15,9 @@ import {SmsEmailVerifierService} from "../../service/verify-service/sms-email-ve
 export class RegisterComponent implements OnInit{
   active = false;
   errMsg = ''
+  routMessage = ''
   geekDetails:GeekModel|undefined
+  submitted = false
 
 
   status = 1;
@@ -57,13 +60,15 @@ export class RegisterComponent implements OnInit{
 
 
 
-  constructor(private verifyService:SmsEmailVerifierService,private regisService:GeekRegistrationService,private router:Router) {
+  constructor(private verifyService:SmsEmailVerifierService,private regisService:GeekRegistrationService,
+              private router:Router,private routeMsgService:RouteMsgService) {
 
 
   }
 
   ngOnInit(): void {
-
+    this.routMessage = this.routeMsgService.routeMsgService
+    this.routeMsgService.routeMsgService = ''
 
   }
 
@@ -131,7 +136,7 @@ export class RegisterComponent implements OnInit{
   submitForm(){
 
     this.geekDetails  = new GeekModel()
-
+    this.submitted = true
     this.geekDetails.email = this.registrationFormGroup.get('email')?.value
     this.geekDetails.firstname = this.registrationFormGroup.get('firstname')?.value
     this.geekDetails.lastname = this.registrationFormGroup.get('lastname')?.value
