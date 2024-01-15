@@ -10,7 +10,7 @@ import {Observable} from "rxjs";
 
   isAuthenticated = false
 
-  public authGeek:AuthGeekModel = new AuthGeekModel()
+  public authGeek:AuthGeekModel|undefined = new AuthGeekModel()
 
   constructor(private httpClient:HttpClient) {
 

@@ -35,19 +35,19 @@ export class VerifyCodeComponent {
 
   submitForm() {
 
-    if(this.verifyService.verifyGeek(
-      {smsCode:this.verifyForm.get('smsCode')?.value,emailCode:this.verifyForm.get('emailCode')?.value}
+    if(this.verifyService.verifyGeek({smsCode:this.verifyForm.get('smsCode')?.value,emailCode:this.verifyForm.get('emailCode')?.value}
     )){
 
       this.registrationService.completeRegistration().subscribe(data=>{
         if(data){
-
+          this.verifyService.emailSmsCodeModel =undefined
+          this.registrationService.geek = new GeekModel()
           console.log('Correct, registration completed')
           this.router.navigate(['/login']).then()
         }else{
           console.log('Registration Failed to complete!')
 
-          this.verifyService.emailSmsCodeModel =new EmailSmsCodeModel<any, any>()
+          this.verifyService.emailSmsCodeModel =undefined
           this.registrationService.geek = new GeekModel()
 
           this.router.navigate(['/register']).then()
@@ -56,13 +56,13 @@ export class VerifyCodeComponent {
       },error => {
         console.log('Registration Failed to complete!\nerror: '+error.error)
 
-        this.verifyService.emailSmsCodeModel =new EmailSmsCodeModel<any, any>()
+        this.verifyService.emailSmsCodeModel =undefined
         this.registrationService.geek = new GeekModel()
 
         this.router.navigate(['/register']).then()
       })
 
-      console.log('Correct, registration completed')
+
     }else{
       this.errMsg = 'code does not match! Try again'
     }

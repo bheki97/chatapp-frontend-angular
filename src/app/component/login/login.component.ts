@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {GeekAuthService} from "../../service/auth-service/geek-auth.service";
 import {ActivatedRoute, Router} from "@angular/router";
+import {RouteMsgService} from "../../service/route-msg-service/route-msg.service";
 
 @Component({
   selector: 'app-login',
@@ -18,13 +19,14 @@ export class LoginComponent implements OnInit{
   btnClicked = false
   formSubmitted = false
   msg = ''
+  routMessage = ''
   loginFormGroup: FormGroup = new FormGroup({
     'username':new FormControl(null,Validators.required),
     'password':new FormControl(null,Validators.required)
   })
 
 
-  constructor(private geekAuthService:GeekAuthService,private router:Router) {
+  constructor(private geekAuthService:GeekAuthService,private router:Router,private routeMsgService:RouteMsgService) {
 
   }
 
@@ -86,6 +88,8 @@ export class LoginComponent implements OnInit{
   }
 
   ngOnInit(): void {
+    this.routMessage = this.routeMsgService.routeMsgService
+    this.routeMsgService.routeMsgService = ''
 
 
 

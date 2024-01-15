@@ -19,6 +19,7 @@
 
         </div>
         <p class="text-center text-danger" *ngIf="((msg ||msg!=='') && formSubmitted&&!loginFormGroup.touched)">{{msg}}</p>
+        <p class="text-center text-success fw-bold fst-normal" *ngIf="((routMessage ||routMessage!=='') && (!loginFormGroup.touched && loginFormGroup.invalid))">{{routMessage}}</p>
         <form [formGroup]="loginFormGroup" (ngSubmit)="submitForm()" >
           <div class="row d-flex justify-content-center mb-2">
 
