@@ -11,9 +11,9 @@
     <h5>search results:</h5>
     <div class="names-wrapper">
       <ul class="list-group">
-        <li (click)="startChatWithNewGeek('bheki97')" >
+        <li *ngFor="let geek of searchedGeeks" (click)="startChatWithNewGeek(geek)" >
           <div class="list-group-item ">
-            <h2>bheki97</h2>
+            <h2>{{geek.username}}</h2>
             <div class="add-user">
               <p>select</p>
             </div>

@@ -15,7 +15,7 @@ import {ProfileColors} from "../../../assets/colors/profile-colors";
   private _geekRooms?:GeekRoomModel[]
   private _activeRoomIndex?:number
   private _activeRoomChanger?:Subject<void>
-  private _selectGeekChanger?:Subject<{geekName:string,profileColor:string}>
+  private _selectGeekChanger?:Subject<{geekId:number,geekName:string,profileColor:string}>
 
 
   constructor() {
@@ -74,7 +74,7 @@ import {ProfileColors} from "../../../assets/colors/profile-colors";
           new GeekModel(1,'Qophi','makholwa','Mlando','siya@gmail.com','+27751020834','',new Date()))
       ]
       this._activeRoomIndex=-1
-      this._selectGeekChanger = new Subject<{geekName: string; profileColor: string}>()
+      this._selectGeekChanger = new Subject<{geekId:number,geekName: string; profileColor: string}>()
       this._activeRoomChanger = new Subject<void>();
   }
 
@@ -116,11 +116,11 @@ import {ProfileColors} from "../../../assets/colors/profile-colors";
     this._geekRooms = value;
   }
 
-  get selectGeekChanger(): Subject<{ geekName: string; profileColor: string }> {
-    return this._selectGeekChanger as Subject<{ geekName: string; profileColor: string }>;
+  get selectGeekChanger(): Subject<{geekId:number, geekName: string; profileColor: string }> {
+    return this._selectGeekChanger as Subject<{geekId:number, geekName: string; profileColor: string }>;
   }
 
-  set selectGeekChanger(value: Subject<{ geekName: string; profileColor: string }>) {
+  set selectGeekChanger(value: Subject<{geekId:number, geekName: string; profileColor: string }>) {
     this._selectGeekChanger = value;
   }
 }
