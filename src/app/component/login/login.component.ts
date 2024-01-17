@@ -74,6 +74,7 @@ export class LoginComponent implements OnInit{
       },error => {
 
           this.msg = error.error
+          if(this.msg == '[object ProgressEvent]')this.msg='server offline'
           console.log(this.msg)
 
         })

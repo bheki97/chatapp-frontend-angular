@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {WebSocketService} from "./service/web-socket-service/web-socket.service";
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-root',
@@ -6,6 +8,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  active = false
 
 }
