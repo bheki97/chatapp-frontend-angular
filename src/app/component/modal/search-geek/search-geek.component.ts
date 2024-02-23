@@ -4,6 +4,7 @@ import {GeekRoomService} from "../../../service/room-service/geek-room.service";
 import {ProfileColors} from "../../../../assets/colors/profile-colors";
 import {SearchedGeekModel} from "../../../model/searched-geek.model";
 import {SearchGeekService} from "../../../service/search-geek-service/search-geek.service";
+import {ChatRoomExistsSearcherService} from "../../../service/search-chat-exists-service/search-chat-room.exists";
 
 @Component({
   selector: 'app-search-geek',
@@ -14,18 +15,32 @@ export class SearchGeekComponent implements OnInit{
 
   searchedGeeks:SearchedGeekModel[] = []
 
-  constructor(private modalService:ModalEventService,private geekRoomService:GeekRoomService,private searchGeekService:SearchGeekService) {
+  constructor(private geekRoomSearcher:ChatRoomExistsSearcherService,private modalService:ModalEventService,private geekRoomService:GeekRoomService,private searchGeekService:SearchGeekService) {
   }
   startChatWithNewGeek(searchedGeek:SearchedGeekModel){
-    const  color = '#'+ProfileColors.at(Math.floor(Math.random() * ProfileColors.length))
-    this.geekRoomService.activeRoomIndex=-1
-    this.geekRoomService.selectGeekChanger.next({geekId:searchedGeek.geekId||-1,geekName:searchedGeek.username||'',profileColor:color})
-    this.closeModal()
+    const index = this.geekRoomSearcher.searchChatRoomExists(searchedGeek.geekId||-1)
+
+      if(index>-1){
+        this.geekRoomService.setActiveRoomIndex(index)
+     }else{
+        const color = '#'+ProfileColors.at(Math.floor(Math.random() * ProfileColors.length))
+        this.geekRoomService.selectedGeek({geekId:searchedGeek.geekId||-1,geekName:searchedGeek.username||'',profileColor:color})
+     }
+
+
+
+
+
+
+     this.closeModal()
+
   }
 
   ngOnInit() {
     this.searchGeekService.returnAllGeeks().subscribe( data=>{
       this.searchedGeeks = data
+    },error => {
+      console.log(error)
     })
   }
 

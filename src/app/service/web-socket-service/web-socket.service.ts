@@ -20,12 +20,17 @@ import {GeekAuthService} from "../auth-service/geek-auth.service";
   }
 
 
-  connect(destination:string, subscribeFunc:(msg:any)=>void){
+  connect(subscribeFunctions:{destination:string, subscribeFunc:(msg:any)=>void} []){
 
     this.stompClient.connect({
       Authorization:`Bearer ${this.authService.authGeek?.authToken}`,
     },()=>{
-      this.stompClient.subscribe(destination, subscribeFunc)
+
+      for(let i=0;i<subscribeFunctions.length;i++){
+        this.stompClient.subscribe(subscribeFunctions[i].destination, subscribeFunctions[i].subscribeFunc)
+      }
+
+
     },error => {
 
     })

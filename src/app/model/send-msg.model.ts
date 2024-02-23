@@ -6,12 +6,14 @@ export class SendMsgModel{
   private _senderId?:string
   private _receiverId?:string
   private _message?:string
+  messageIndex?:number
 
 
-  constructor(senderId: string, receiverId: string, message: string) {
+  constructor(senderId?: string, receiverId?: string, message?: string,messageIndex?:number) {
     this._senderId = senderId;
     this._receiverId = receiverId;
     this._message = message;
+    this.messageIndex = messageIndex
   }
 
 

@@ -4,7 +4,7 @@
   </div>
   <div class="chat-list">
     <div class="list-group">
-      <app-chat-select *ngFor="let item of rooms"  [room]="item" />
+      <app-chat-select *ngFor="let item of rooms; let index = index"  [room]="index" />
     </div>
   </div>
 </div>

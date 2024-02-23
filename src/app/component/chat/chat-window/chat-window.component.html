@@ -1,12 +1,18 @@
 <div class="wrapper">
-  <div class="chat-header">
-    <app-window-header/>
-  </div>
-  <div class="msg-list">
-    <app-window-list-message/>
-  </div>
-  <div class="msg-sender">
-    <app-window-base/>
-  </div>
+  <ng-container *ngIf="activeRoomId>-1">
+    <div class="chat-header">
+      <app-window-header/>
+    </div>
+    <div class="msg-list">
+      <app-window-list-message/>
+    </div>
+    <div class="msg-sender">
+      <app-window-base/>
+    </div>
+  </ng-container>
+
+  <ng-container *ngIf="activeRoomId<0">
+      <app-chat-window-mock/>
+  </ng-container>
 
 </div>

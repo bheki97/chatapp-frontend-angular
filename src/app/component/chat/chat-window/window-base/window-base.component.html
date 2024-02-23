@@ -1,13 +1,13 @@
-<div class="wrapper">
+<form class="wrapper" [formGroup]="sendMessageForm" (ngSubmit)="sendMessage()">
 <!--  text-area-->
 
-  <div class="text-field-wrapper">
-<!--    <input  type="text" class="form-control" placeholder="type message here">-->
 
-    <textarea id="multilineInput" placeholder="type message here" name="multilineInput" class="form-control" rows="1" cols="50" (input)="autoResize($event)"></textarea>
-  </div>
-<!--  send-button-->
-  <div class="send-btn-wrapper">
-    <button class="btn">send</button>
-  </div>
-</div>
+    <div class="text-field-wrapper">
+      <!--    <input  type="text" class="form-control" placeholder="type message here">-->
+      <textarea formControlName="message" id="multilineInput" placeholder="type message here" name="multilineInput" class="form-control" rows="1" cols="50" (input)="autoResize($event)"></textarea>
+    </div>
+    <!--  send-button-->
+    <div class="send-btn-wrapper">
+      <button class="btn" type="submit">send</button>
+    </div>
+</form>

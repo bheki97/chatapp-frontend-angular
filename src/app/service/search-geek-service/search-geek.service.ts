@@ -1,7 +1,6 @@
 import {Injectable} from "@angular/core";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {GeekAuthService} from "../auth-service/geek-auth.service";
-import {GeekModel} from "../../model/geek.model";
 import {Observable} from "rxjs";
 import {SearchedGeekModel} from "../../model/searched-geek.model";
 
@@ -17,15 +16,13 @@ import {SearchedGeekModel} from "../../model/searched-geek.model";
   }
 
   returnAllGeeks():Observable<SearchedGeekModel[]> {
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${this.authGeekService.authGeek?.authToken}`);
+    console.log('Headers: '+ headers.get('Authorization'))
     return this.httpClient.get<SearchedGeekModel[]>(
-      `${this.url}/geek/search/${this.authGeekService.authGeek?.geek?.geekId}`,
-      { headers :this.returnHeaders() })
+      `${this.url}/geek/search/${this.authGeekService.authGeek?.geek?.geekId}`,{ headers,withCredentials:true })
   }
 
-  returnHeaders(){
-    return new HttpHeaders({
-      ['Authorization']:`Bearer ${this.authGeekService.authGeek?.authToken}`
-    })
-  }
+
+
 
 }

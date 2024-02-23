@@ -1,51 +1,22 @@
 import {MsgModel} from "../msg.model";
 import {GeekModel} from "../geek.model";
+import {ProfileColors} from "../../../assets/colors/profile-colors";
 
 
 export class GeekRoomModel{
-  private _roomId:number=-1
-  private _color:string
-  private _messages:MsgModel[] = []
-  private _receiver:GeekModel = new GeekModel()
+  roomId:number=-1
+  color:string
+  messages:MsgModel[] = []
+  receiver:GeekModel = new GeekModel()
 
 
-  constructor(roomId?: number,color?:string, messages?: MsgModel[], receiver?: GeekModel) {
-    this._roomId = roomId ||-1;
-    this._messages = messages ||[];
-    this._receiver = receiver ||new GeekModel();
-    this._color = color|| '#AE88CB'
+  constructor(roomId?: number, messages?: MsgModel[], receiver?: GeekModel) {
+    this.roomId = roomId ||-1;
+    this.messages = messages ||[];
+    this.receiver = receiver ||new GeekModel();
+    this.color = '#'+ProfileColors.at(Math.floor(Math.random() * ProfileColors.length))
   }
 
 
-  get color(): string {
-    return this._color;
-  }
 
-  set color(value: string) {
-    this._color = value;
-  }
-
-  get roomId(): number {
-    return this._roomId as number;
-  }
-
-  set roomId(value: number) {
-    this._roomId = value;
-  }
-
-  get messages(): MsgModel[] {
-    return this._messages as MsgModel[];
-  }
-
-  set messages(value: MsgModel[]) {
-    this._messages = value;
-  }
-
-  get receiver(): GeekModel {
-    return this._receiver as GeekModel;
-  }
-
-  set receiver(value: GeekModel) {
-    this._receiver = value;
-  }
 }

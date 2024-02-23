@@ -25,6 +25,7 @@ import { SearchGeekComponent } from './component/modal/search-geek/search-geek.c
 import {ModalEventService} from "./service/modal-service/modal-event.service";
 import {ShortEmailPipe} from "./pipe/short-email.pipe";
 import {ShortenCellNoPipe} from "./pipe/shorten-cellno.pipe";
+import {ChatWindowMockComponent} from "./component/mock/chat-window-mock/chat-window-mock.component";
 
 
 
@@ -48,15 +49,16 @@ import {ShortenCellNoPipe} from "./pipe/shorten-cellno.pipe";
     WindowListMessageComponent,
     SearchGeekComponent
   ],
-  imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
-    AppRoutingModule,
-    HttpClientModule,
-    ReactiveFormsModule,
-    NgbModule
+    imports: [
+        BrowserModule,
+        BrowserAnimationsModule,
+        AppRoutingModule,
+        HttpClientModule,
+        ReactiveFormsModule,
+        NgbModule,
+        ChatWindowMockComponent
 
-  ],
+    ],
   providers: [HttpClient,GeekRoomService,ModalEventService],
   bootstrap: [AppComponent]
 })

@@ -9,20 +9,19 @@ import {GeekRoomService} from "../../../service/room-service/geek-room.service";
 })
 export class ChatListComponent implements OnInit{
 
-   rooms:number[] =[]
+   rooms:GeekRoomModel[] =[]
 
   constructor(private roomService:GeekRoomService) {
-    this.rooms = roomService.geekRooms.map((v,i,a)=>{
-      return i
-    } )
+
 
   }
 
   ngOnInit(): void {
-     // console.log(this.rooms)
+    this.roomService.roomLoadedEmitter.subscribe( ()=>{
+      this.rooms = this.roomService.geekRooms
+      console.log(this.rooms)
+    })
 
   }
 
-
-  protected readonly console = console;
 }

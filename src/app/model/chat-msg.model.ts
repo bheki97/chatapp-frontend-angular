@@ -7,6 +7,7 @@ export class ChatMsgModel{
   private _senderId?:string;
   private _sendDate?:Date;
 
+
   constructor(options: {senderId?:string,msgId?:number,message?:string,sendDate?:Date}={}
   ) {
     this._msgId = options.msgId;

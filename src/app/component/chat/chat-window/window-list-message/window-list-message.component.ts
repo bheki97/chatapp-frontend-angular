@@ -4,6 +4,7 @@ import {MsgModel} from "../../../../model/msg.model";
 import {GeekRoomService} from "../../../../service/room-service/geek-room.service";
 import {GeekRoomModel} from "../../../../model/room/geek-room.model";
 import {Subscription} from "rxjs";
+import {MsgStatusModel} from "../../../../model/msg-status.model";
 
 @Component({
   selector: 'app-window-list-message',
@@ -13,26 +14,31 @@ import {Subscription} from "rxjs";
 export class WindowListMessageComponent implements OnInit,OnDestroy{
 
     messages:MsgModel[] = []
-    activeChatGeek:string = ''
+    activeChatGeekId:number = -1
     activeChatSubscription? :Subscription
     activeNewChatSubscription? :Subscription
-    msgStatus = 1
 
 
   constructor(private roomService:GeekRoomService) {
-    const room = roomService.geekRooms.at(roomService.activeRoomIndex) as GeekRoomModel;
-    if(room.receiver.username)this.activeChatGeek =room.receiver.username
 
-      this.messages = room.messages
 
 
   }
 
-   formatTime(date: Date): string {
-    return format(date,'h:mm a')
+   formatTime(date: Date|undefined): string {
+
+    return date?format(date,'h:mm a'):'unknown'
   }
 
   ngOnDestroy(): void {
+      if(this.roomService.activeRoomIndex>0){
+        const room = this.roomService.geekRooms.at(this.roomService.activeRoomIndex) as GeekRoomModel;
+        if(room.receiver.username)this.activeChatGeekId =room.receiver.geekId ||-1
+
+        this.messages = room.messages
+      }
+
+
     if(this.activeChatSubscription){
       this.activeChatSubscription.unsubscribe()
     }
@@ -46,20 +52,27 @@ export class WindowListMessageComponent implements OnInit,OnDestroy{
 
     this.activeChatSubscription = this.roomService.activeRoomChanger.subscribe(() =>{
       const room = this.roomService.geekRooms.at(this.roomService.activeRoomIndex) as GeekRoomModel;
-      if(room.receiver.username) this.activeChatGeek =room.receiver.username
+      if(room?.receiver?.username) this.activeChatGeekId =room.receiver.geekId ||-1
 
-      this.messages = room.messages
+      this.messages = room?.messages||[]
 
 
     })
-    setTimeout(()=>{
-      this.msgStatus = 2
-    },3000)
-    setTimeout(()=>{
-      this.msgStatus = 3
-    },6000)
 
 
   }
 
+    getStatus(status: MsgStatusModel | undefined):number {
+
+        if(status && status.receiveDate){
+            if(status.readDate){
+                return 3
+            }
+            return 2
+
+        }
+
+
+        return 1
+    }
 }

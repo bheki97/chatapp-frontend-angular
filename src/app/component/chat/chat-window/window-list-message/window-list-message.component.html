@@ -2,14 +2,14 @@
 
   <div *ngFor="let a of messages">
 
-    <div class="sent-flex" *ngIf="a.senderId!==activeChatGeek" >
+    <div class="sent-flex" *ngIf="a.senderId!==activeChatGeekId" >
       <div class="msg sender" >
         <p>{{a.message}}</p>
         <div class="time time-sent" >
-          <p>{{formatTime(a.sendDate)}} </p>
-          <div class="tick" *ngIf="msgStatus===1" style="background-image: url('assets/sent-icon.svg')"></div>
-          <div class="tick" *ngIf="msgStatus===2" style="background-image: url('assets/received-icon.svg')"></div>
-          <div class="tick" *ngIf="msgStatus===3" style="background-image: url('assets/read-icon.svg')"></div>
+          <p>{{formatTime(a.status?.sendDate)}} </p>
+          <div class="tick" *ngIf="getStatus(a.status)===1" style="background-image: url('assets/sent-icon.svg')"></div>
+          <div class="tick" *ngIf="getStatus(a.status)===2" style="background-image: url('assets/received-icon.svg')"></div>
+          <div class="tick" *ngIf="getStatus(a.status)===3" style="background-image: url('assets/read-icon.svg')"></div>
         </div>
       </div>
 
@@ -17,12 +17,12 @@
     </div>
 
 
-    <div class="received-flex"  *ngIf="a.senderId===activeChatGeek" >
+    <div class="received-flex"  *ngIf="a.senderId===activeChatGeekId" >
 
       <div class="msg receiver" >
         <p>{{a.message}}</p>
         <div class="time time-received">
-          <p>{{formatTime(a.sendDate)}}</p>
+          <p>{{formatTime(a.status?.sendDate)}}</p>
 
         </div>
       </div>

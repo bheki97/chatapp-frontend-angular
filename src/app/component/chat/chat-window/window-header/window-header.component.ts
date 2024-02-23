@@ -19,8 +19,8 @@ export class WindowHeaderComponent implements OnInit,OnDestroy{
 
   constructor(private roomService:GeekRoomService) {
     const room = roomService.geekRooms.at(roomService.activeRoomIndex)
-    this.activeChatGeek = room?.receiver.username||''
-    this.profileColor = room?.color || ''
+    this.activeChatGeek = room?.receiver.username||roomService.selectedGeekData?.geekName||''
+    this.profileColor = room?.color ||roomService.selectedGeekData?.profileColor|| ''
   }
 
   ngOnInit(): void {
@@ -31,9 +31,9 @@ export class WindowHeaderComponent implements OnInit,OnDestroy{
       console.log(this.profileColor)
     })
 
-    this.activeNewChatSubscription = this.roomService.selectGeekChanger.subscribe(geek=>{
-      this.activeChatGeek = geek.geekName
-      this.profileColor = geek.profileColor
+    this.activeNewChatSubscription = this.roomService.selectGeekChanger.subscribe(()=>{
+      this.activeChatGeek = this.roomService.selectedGeekData?.geekName||''
+      this.profileColor = this.roomService.selectedGeekData?.profileColor||''
     })
 
 

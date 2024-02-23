@@ -2,6 +2,8 @@ import {Component, Input, OnInit} from '@angular/core';
 import {ProfileColors} from "../../../../../assets/colors/profile-colors";
 import {GeekRoomService} from "../../../../service/room-service/geek-room.service";
 import {GeekRoomModel} from "../../../../model/room/geek-room.model";
+import {GeekAuthService} from "../../../../service/auth-service/geek-auth.service";
+import {format} from "date-fns";
 
 @Component({
   selector: 'app-chat-select',
@@ -16,10 +18,11 @@ export class ChatSelectItemComponent implements OnInit{
   receiverName:string ='bheki97'
   lastMsg:string = 'hello bheki'
   lastMsgSender:string = 'You'
+  lastMsgTime = ''
   username = 'bheki'
 
 
-  constructor(private roomService:GeekRoomService) {
+  constructor(private roomService:GeekRoomService,private authService:GeekAuthService) {
 
   }
 
@@ -36,6 +39,8 @@ export class ChatSelectItemComponent implements OnInit{
 
 
   ngOnInit(): void {
+    console.log('Room Id: '+this.roomIndex)
+
     if(this.roomIndex>=0){
       let room:GeekRoomModel = this.roomService.geekRooms.at(this.roomIndex) as GeekRoomModel
       // console.log(this.roomIndex)
@@ -44,9 +49,18 @@ export class ChatSelectItemComponent implements OnInit{
 
         this.profileColor = room.color
         const messages = room.messages
-        this.lastMsg = messages.at(messages.length-1)?.message||'no msg'
-        this.lastMsgSender = messages.at(messages.length-1)?.senderId||'unknown'
-        this.lastMsgSender = this.lastMsgSender===this.username?'You':this.lastMsgSender
+        const  msg = messages.at(messages.length-1)
+
+        const lastDate = msg?.status?.sendDate
+
+        if(lastDate){
+          this.lastMsgTime = format(lastDate,'h:mm a')
+        }
+
+
+        this.lastMsg = msg?.message||'no msg'
+
+        this.lastMsgSender = msg?.senderId==this.authService.authGeek?.geek?.geekId? 'You':room.receiver.username||'unknown'
       }
 
     }
