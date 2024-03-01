@@ -7,9 +7,7 @@
         <p>{{a.message}}</p>
         <div class="time time-sent" >
           <p>{{formatTime(a.status?.sendDate)}} </p>
-          <div class="tick" *ngIf="getStatus(a.status)===1" style="background-image: url('assets/sent-icon.svg')"></div>
-          <div class="tick" *ngIf="getStatus(a.status)===2" style="background-image: url('assets/received-icon.svg')"></div>
-          <div class="tick" *ngIf="getStatus(a.status)===3" style="background-image: url('assets/read-icon.svg')"></div>
+          <div class="tick"  [appSentMessageStatus]="a.status"></div>
         </div>
       </div>
 

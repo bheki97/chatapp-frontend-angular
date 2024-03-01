@@ -3,6 +3,7 @@ import {MsgStatusUpdateModel} from "../../model/msg-status-update.model";
 import {GeekRoomService} from "../room-service/geek-room.service";
 import {WebSocketService} from "../web-socket-service/web-socket.service";
 import {MsgModel} from "../../model/msg.model";
+import {GeekRoomModel} from "../../model/room/geek-room.model";
 
 
 @Injectable({
@@ -21,19 +22,24 @@ import {MsgModel} from "../../model/msg.model";
 
       if(room.roomId===status.roomId){
         const messages = room.messages
-        for(let j=0;j<messages.length;j++){
-          msg = messages[i]
+
+
+        for(let j=messages.length-1;j>-1;j--){
+          msg = messages[j]
+
           if(msg.msgId===status.msgId){
 
             if(msg.status){
 
               if(type==='read'){
                   msg.status.readDate = status.date
-                  break
-              }
-              if(type==='received'){
+              }else if(type==='received'){
                 msg.status.receiveDate = status.date
+
               }
+              console.log('index val: '+j)
+              messages.splice(j,1)
+              messages.splice(j,0,Object.assign({}, msg))
               break
 
 

@@ -5,6 +5,8 @@ import {GeekRoomService} from "../../../../service/room-service/geek-room.servic
 import {GeekRoomModel} from "../../../../model/room/geek-room.model";
 import {Subscription} from "rxjs";
 import {MsgStatusModel} from "../../../../model/msg-status.model";
+import {GeekAuthService} from "../../../../service/auth-service/geek-auth.service";
+import {MsgStatusUpdaterService} from "../../../../service/msg-status-updater-service/msg-status-updater.service";
 
 @Component({
   selector: 'app-window-list-message',
@@ -19,7 +21,8 @@ export class WindowListMessageComponent implements OnInit,OnDestroy{
     activeNewChatSubscription? :Subscription
 
 
-  constructor(private roomService:GeekRoomService) {
+  constructor(private roomService:GeekRoomService,
+              private authService:GeekAuthService,private  msgUpdater:MsgStatusUpdaterService) {
 
 
 
@@ -36,6 +39,7 @@ export class WindowListMessageComponent implements OnInit,OnDestroy{
         if(room.receiver.username)this.activeChatGeekId =room.receiver.geekId ||-1
 
         this.messages = room.messages
+
       }
 
 
@@ -55,6 +59,21 @@ export class WindowListMessageComponent implements OnInit,OnDestroy{
       if(room?.receiver?.username) this.activeChatGeekId =room.receiver.geekId ||-1
 
       this.messages = room?.messages||[]
+
+      console.log('read update: '+this.authService.authGeek?.geek?.geekId)
+      setTimeout(()=>{
+        const geekId = this.authService.authGeek?.geek?.geekId
+
+        if(geekId){
+
+          this.messages.forEach((value, index, array)=>{
+            if(geekId!==value.senderId && value.status?.readDate==null){
+              this.msgUpdater.sendUpdate('read',value)
+            }
+          })
+        }
+
+      },0)
 
 
     })

@@ -29,7 +29,10 @@ import {MsgStatusUpdaterService} from "../msg-status-updater-service/msg-status-
         room.messages.push(msg)
 
         if(i===this.roomService.activeRoomIndex){
-          this.msgUpdater.sendUpdate('read',msg)
+          setTimeout(()=>{
+            this.msgUpdater.sendUpdate('read',msg)
+          },3000)
+
         }
 
       }

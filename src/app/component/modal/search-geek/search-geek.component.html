@@ -2,7 +2,7 @@
 <div class="alert-box">
   <div class="search-box">
     <div class="search-bar">
-      <input type="text" placeholder="enter geek username">
+      <input type="text" placeholder="enter geek username"  [(ngModel)]="searchText">
       <img src="assets/search-icon.svg" class="search-icon" alt="">
     </div>
   </div>
@@ -11,7 +11,7 @@
     <h5>search results:</h5>
     <div class="names-wrapper">
       <ul class="list-group">
-        <li *ngFor="let geek of searchedGeeks" (click)="startChatWithNewGeek(geek)" >
+        <li *ngFor="let geek of searchedGeeks|filterSearchedGeeks:searchText" (click)="startChatWithNewGeek(geek)" >
           <div class="list-group-item ">
             <h2>{{geek.username}}</h2>
             <div class="add-user">
@@ -19,6 +19,8 @@
             </div>
           </div>
         </li>
+        <li *ngIf="searchedGeeks.length>0 && (searchedGeeks|filterSearchedGeeks:searchText).length===0"></li>
+        <li *ngIf="searchedGeeks.length===0"></li>
       </ul>
     </div>
   </div>

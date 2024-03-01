@@ -7,7 +7,7 @@ import { RegisterComponent } from './component/register/register.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {AppRoutingModule} from "./app-routing.module";
 import {HttpClient, HttpClientModule} from "@angular/common/http";
-import { ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { VerifyCodeComponent } from './component/verify-code/verify-code.component';
 import { ChatComponent } from './component/chat/chat.component';
 import { ChatSelectItemComponent } from './component/chat/chat-list/chat-select-item/chat-select-item.component';
@@ -26,12 +26,18 @@ import {ModalEventService} from "./service/modal-service/modal-event.service";
 import {ShortEmailPipe} from "./pipe/short-email.pipe";
 import {ShortenCellNoPipe} from "./pipe/shorten-cellno.pipe";
 import {ChatWindowMockComponent} from "./component/mock/chat-window-mock/chat-window-mock.component";
+import {SentMessageStatusDirective} from "./directives/sent-message-status.directive";
+import {FullDatePipe} from "./pipe/full-date.pipe";
+import {FilterSearchedGeeksPipe} from "./pipe/filter-searched-geeks.pipe";
 
 
 
 @NgModule({
   declarations: [
     ShortEmailPipe,
+    FullDatePipe,
+    FilterSearchedGeeksPipe,
+    SentMessageStatusDirective,
     ShortenCellNoPipe,
     AppComponent,
     LoginComponent,
@@ -49,16 +55,17 @@ import {ChatWindowMockComponent} from "./component/mock/chat-window-mock/chat-wi
     WindowListMessageComponent,
     SearchGeekComponent
   ],
-    imports: [
-        BrowserModule,
-        BrowserAnimationsModule,
-        AppRoutingModule,
-        HttpClientModule,
-        ReactiveFormsModule,
-        NgbModule,
-        ChatWindowMockComponent
+  imports: [
+    BrowserModule,
+    BrowserAnimationsModule,
+    AppRoutingModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+    NgbModule,
+    ChatWindowMockComponent,
+    FormsModule
 
-    ],
+  ],
   providers: [HttpClient,GeekRoomService,ModalEventService],
   bootstrap: [AppComponent]
 })

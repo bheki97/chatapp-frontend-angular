@@ -14,6 +14,7 @@ import {ChatRoomExistsSearcherService} from "../../../service/search-chat-exists
 export class SearchGeekComponent implements OnInit{
 
   searchedGeeks:SearchedGeekModel[] = []
+  searchText = ''
 
   constructor(private geekRoomSearcher:ChatRoomExistsSearcherService,private modalService:ModalEventService,private geekRoomService:GeekRoomService,private searchGeekService:SearchGeekService) {
   }

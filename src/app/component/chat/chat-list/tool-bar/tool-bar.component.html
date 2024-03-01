@@ -7,8 +7,8 @@
       <div class="top-left mx-3 my-2">
         <div class="dropdown" (click)="toggleDropdown()">
           <button class="link  dropbtn" >
-            <div class="profile-icon " style="background-image: url('./assets/profile-icon-125.png');">
-              <span>B</span>
+            <div class="profile-icon" [style.background-color]="color">
+              <span>{{initials}}</span>
             </div>
           </button>
           <div class="dropdown-content" *ngIf="isDropdownOpen">

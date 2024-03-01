@@ -90,7 +90,9 @@ export class ChatComponent implements OnInit,OnDestroy{
         })},
       {destination:`/topic/received-msg-statuses/${this.authService.authGeek?.geek?.geekId}`,subscribeFunc:(msg=>{
           const update = JSON.parse(msg.body) as MsgStatusUpdateModel
-              this.msgStatusUpdater.updateMsg('received',update)
+              setTimeout(()=>{
+                this.msgStatusUpdater.updateMsg('received',update)
+              },2000)
 
         })},{destination:`/topic/messages/${this.authService.authGeek?.geek?.geekId}`, subscribeFunc:(msg =>{
           const newMsg = JSON.parse(msg.body) as MsgModel

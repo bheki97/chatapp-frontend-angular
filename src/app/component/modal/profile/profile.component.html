@@ -5,11 +5,13 @@
 <!--    <img src="assets/close-icon.svg" alt="" class="close-icon">-->
     <button class="btn close-icon" (click)="closeModal()" style="background-image: url('assets/close-icon.svg')"></button>
   </div>
+  <form>
+
   <div class="content-box">
     <div class="profile-btn-row">
       <div class="profile-icon-div">
-        <div class="profile-icon">
-          <span>B</span>
+        <div class="profile-icon" [style.background-color]="color">
+          <span>{{geek?(geek.username?geek.username.charAt(0).toUpperCase():'G'):'G'}}</span>
         </div>
       </div>
       <div class="btn-div">
@@ -20,13 +22,13 @@
     </div>
     <div class="profile-details-row">
       <div class="name-email-div">
-        <h2>Bheki Mautjana - </h2>
+        <h2>{{geek?.firstname}} {{geek?.lastname}} - </h2>
         <div class="email-div">
-          <span>bfmokoena7&#64;gmail.com</span>
+          <span>{{geek?.email}}</span>
         </div>
       </div>
       <div class="date-div">
-        <span>Joined on the 3rd June 2023</span>
+        <span>Joined on the {{geek?.registrationDate|fullDate}}</span>
       </div>
     </div>
     <div class="edit-profile-row">
@@ -41,7 +43,7 @@
 
           <div class="input-wrapper">
             <div class="input-container">
-              <input type="text" id="firstname" placeholder=" ">
+              <input type="text" id="firstname" value="{{geek?.firstname}}" placeholder=" ">
               <label for="firstname">first name</label>
             </div>
           </div>
@@ -50,7 +52,7 @@
         <div class="input-div">
           <div class="input-wrapper">
             <div class="input-container">
-              <input type="text" id="lastname" placeholder=" ">
+              <input type="text" id="lastname"  value="{{geek?.lastname}}" placeholder=" ">
               <label for="lastname">last name</label>
             </div>
           </div>
@@ -59,8 +61,17 @@
         <div class="input-div">
           <div class="input-wrapper">
             <div class="input-container">
-              <input id="cellNo" type="text" placeholder="">
+              <input id="cellNo" type="text"  value="{{geek?.cellNumber}}" placeholder="">
               <label for="cellNo">contact number</label>
+            </div>
+
+          </div>
+        </div>
+        <div class="input-div">
+          <div class="input-wrapper">
+            <div class="input-container">
+              <input id="username" type="text"  value="{{geek?.username}}" placeholder="">
+              <label for="username">username</label>
             </div>
 
           </div>
@@ -69,8 +80,8 @@
 
 
     </div>
-
   </div>
+  </form>
 
 </div>
 

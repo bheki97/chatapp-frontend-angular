@@ -1,5 +1,7 @@
 import {Component, ElementRef, HostListener} from '@angular/core';
 import {ModalEventService} from "../../../../service/modal-service/modal-event.service";
+import {GeekAuthService} from "../../../../service/auth-service/geek-auth.service";
+import {ProfileColors} from "../../../../../assets/colors/profile-colors";
 
 @Component({
   selector: 'app-tool-bar',
@@ -9,6 +11,16 @@ import {ModalEventService} from "../../../../service/modal-service/modal-event.s
 export class ToolBarComponent {
 
   isDropdownOpen = false;
+  initials=''
+  color='#CB8888'
+
+  constructor(private elementRef: ElementRef,private modalService:ModalEventService,authService:GeekAuthService) {
+    this.initials = authService.authGeek? authService.authGeek.geek?
+      authService.authGeek.geek.username?authService.authGeek.geek.username.charAt(0).toUpperCase():'G':'G':'G'
+      this.color = '#'+ProfileColors.at(Math.floor(Math.random() * ProfileColors.length))
+
+  }
+
   toggleDropdown() {
     this.isDropdownOpen = !this.isDropdownOpen;
   }
@@ -43,8 +55,5 @@ export class ToolBarComponent {
     this.isDropdownOpen = false;
   }
 
-  constructor(private elementRef: ElementRef,private modalService:ModalEventService) {
 
-
-  }
 }
