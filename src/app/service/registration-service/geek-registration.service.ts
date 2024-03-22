@@ -17,11 +17,11 @@ import {Observable} from "rxjs";
   }
 
 
-  requestForVerification(geek?:GeekModel):Observable<EmailSmsCodeModel<any,any>>|undefined{
+  requestForVerification(geek?:GeekModel):Observable<{ code:any }>|undefined{
     if(geek){
       this.geek = geek;
       console.log(geek)
-      return this.httpClient.post<EmailSmsCodeModel<any,any>>('http://localhost:8080/registration/verification',geek)
+      return this.httpClient.post<{ code:any }>('http://localhost:8080/registration/verification',geek)
     }
 
     return undefined;

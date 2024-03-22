@@ -22,7 +22,7 @@ import {ProfileColors} from "../../../assets/colors/profile-colors";
   constructor() {
     this.newChatEmitter = new Subject<void>();
     this.roomLoadedEmitter = new Subject<void>();
-    this._activeRoomIndex=-1
+    this._activeRoomIndex=-2
     this._selectGeekChanger = new Subject<void>()
     this._activeRoomChanger = new Subject<void>();
   }

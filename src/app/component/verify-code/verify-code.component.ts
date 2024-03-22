@@ -20,7 +20,6 @@ export class VerifyCodeComponent {
 
 
   verifyForm:FormGroup = new FormGroup({
-    'smsCode':new FormControl(null),
     'emailCode':new FormControl(null),
   })
 
@@ -35,7 +34,7 @@ export class VerifyCodeComponent {
 
   submitForm() {
 
-    if(this.verifyService.verifyGeek({smsCode:this.verifyForm.get('smsCode')?.value,emailCode:this.verifyForm.get('emailCode')?.value}
+    if(this.verifyService.verifyGeek(this.verifyForm.get('emailCode')?.value
     )){
 
       this.registrationService.completeRegistration().subscribe(data=>{

@@ -1,5 +1,5 @@
 <div class="wrapper">
-  <ng-container *ngIf="activeRoomId>-1">
+  <ng-container *ngIf="activeRoomId>-2">
     <div class="chat-header">
       <app-window-header/>
     </div>
@@ -11,7 +11,7 @@
     </div>
   </ng-container>
 
-  <ng-container *ngIf="activeRoomId<0">
+  <ng-container *ngIf="activeRoomId<-1">
       <app-chat-window-mock/>
   </ng-container>
 

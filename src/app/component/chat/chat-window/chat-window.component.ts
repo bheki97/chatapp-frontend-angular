@@ -9,8 +9,9 @@ import {Subscription} from "rxjs";
 })
 export class ChatWindowComponent implements OnInit,OnDestroy{
 
-  activeRoomId = -1
+  activeRoomId = -2
   activeRoomChangerListener?:Subscription
+  activeNewRoomChangerListener?:Subscription
 
   constructor(private roomService:GeekRoomService) {
 
@@ -22,6 +23,8 @@ export class ChatWindowComponent implements OnInit,OnDestroy{
       console.log('new room: '+this.activeRoomId )
 
     })
+
+    this.activeNewRoomChangerListener =  this.roomService.selectGeekChanger.subscribe(()=>this.activeRoomId=this.roomService.activeRoomIndex)
   }
 
   ngOnDestroy(): void {

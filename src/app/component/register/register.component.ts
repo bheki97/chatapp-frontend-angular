@@ -6,6 +6,7 @@ import {GeekModel} from "../../model/geek.model";
 import {Router} from "@angular/router";
 import {SmsEmailVerifierService} from "../../service/verify-service/sms-email-verifier.service";
 import {RouteMsgService} from "../../service/route-msg-service/route-msg.service";
+import {EmailVerifierService} from "../../service/verify-service/email-verifier.service";
 
 @Component({
   selector: 'app-register',
@@ -60,7 +61,7 @@ export class RegisterComponent implements OnInit{
 
 
 
-  constructor(private verifyService:SmsEmailVerifierService,private regisService:GeekRegistrationService,
+  constructor(private verifyService:EmailVerifierService,private regisService:GeekRegistrationService,
               private router:Router,private routeMsgService:RouteMsgService) {
 
 
@@ -149,11 +150,9 @@ export class RegisterComponent implements OnInit{
       this.errMsg=''
 
       result.subscribe(data =>{
-        this.verifyService.emailSmsCodeModel = data
+        this.verifyService.verificationCode = data.code
         console.log(data)
-        this.router.navigate(['/verify']).then(r => {
-
-        })
+        this.router.navigate(['/verify']).then()
         this.registrationFormGroup.reset()
       },error => {
         console.log(error.error)

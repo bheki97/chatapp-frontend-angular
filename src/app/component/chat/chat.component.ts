@@ -32,6 +32,7 @@ export class ChatComponent implements OnInit,OnDestroy{
               private authService:GeekAuthService,
               private httpRoomService:HttpRoomService,
               private geekRoomService:GeekRoomService,
+              private msgUpdaterService:MsgStatusUpdaterService,
               private newMsgHandler:NewMsgHandlerService,
               private msgStatusUpdater:MsgStatusUpdaterService
   ) {
@@ -65,8 +66,22 @@ export class ChatComponent implements OnInit,OnDestroy{
     this.httpRoomService.getAllGeeksRooms().subscribe(response =>{
       for(let i=0;i<response.length;i++){
         const  room = response.at(i);
+
         if(room){
           room.color = '#'+ProfileColors.at(Math.floor(Math.random() * ProfileColors.length))
+            const messages  = room.messages
+            let status
+            for(let j=messages.length-1;j>-1;j--){
+              status= messages[j].status
+              if(status){
+                if (!status.receiveDate) {
+                  status.receiveDate = new Date()
+                  console.log(messages[j])
+                  this.msgUpdaterService.sendUpdate('received',messages[j])
+                }
+              }
+            }
+
         }
 
       }
@@ -100,6 +115,12 @@ export class ChatComponent implements OnInit,OnDestroy{
 
         this.newMsgHandler.handleNewMessage(newMsg)
 
+      })},{destination:`/topic/new-conversation/${this.authService.authGeek?.geek?.geekId}`, subscribeFunc:(room =>{
+          const newRoom = JSON.parse(room.body) as GeekRoomModel
+
+
+        this.handleNewRoom(newRoom)
+
       })}
     ]
 
@@ -111,4 +132,7 @@ export class ChatComponent implements OnInit,OnDestroy{
 
   }
 
+  private handleNewRoom(newRoom: GeekRoomModel) {
+    this.geekRoomService.geekRooms.splice(0,0,newRoom)
+  }
 }

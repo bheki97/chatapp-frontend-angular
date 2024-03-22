@@ -21,8 +21,8 @@ export class SearchGeekComponent implements OnInit{
   startChatWithNewGeek(searchedGeek:SearchedGeekModel){
     const index = this.geekRoomSearcher.searchChatRoomExists(searchedGeek.geekId||-1)
 
-      if(index>-1){
-        this.geekRoomService.setActiveRoomIndex(index)
+    if(index>-1){
+      this.geekRoomService.setActiveRoomIndex(index)
      }else{
         const color = '#'+ProfileColors.at(Math.floor(Math.random() * ProfileColors.length))
         this.geekRoomService.selectedGeek({geekId:searchedGeek.geekId||-1,geekName:searchedGeek.username||'',profileColor:color})
